@@ -4,6 +4,11 @@ services:
   # React Native (Expo) application
   mobile:
     build: .
+    command: expo start --host 0.0.0.0 --web
+    ports:
+      - 19006:19006
     volumes:
       - ./:/app:rw
       - /app/node_modules
+    environment:
+      NODE_ENV: development
