@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 
 export function ContadorPessoasScreen() {
   return (
     <View>
-      <Text>Contador de pessoas</Text>
+      <Text style={{ fontSize: 40 }}>0</Text>
+      <Button title="+"></Button>
+      <Button title="-"></Button>
     </View>
   );
 }
