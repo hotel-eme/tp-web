@@ -9,6 +9,9 @@ export function ContadorPessoasScreen() {
   }
 
   function removePessoa() {
+    if (contador <= 0) {
+      return;
+    }
     setContador(contador - 1);
   }
 
