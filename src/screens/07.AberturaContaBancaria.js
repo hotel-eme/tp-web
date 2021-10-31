@@ -1,7 +1,7 @@
 import Slider from '@react-native-community/slider';
 import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Switch, Text, TextInput, View } from 'react-native';
 
 export function AberturaContaBancariaScreen() {
   var [nome, setNome] = useState(null);
@@ -9,7 +9,7 @@ export function AberturaContaBancariaScreen() {
   var [sexo, setSexo] = useState(null);
   var [escolaridade, setEscolaridade] = useState(null);
   var [limite, setLimite] = useState(null);
-  var [brasileiro, setBrasileiro] = useState(null);
+  var [brasileiro, setBrasileiro] = useState(true);
   const limiteMaximo = 50000;
 
   return (
@@ -52,7 +52,7 @@ export function AberturaContaBancariaScreen() {
       </View>
       <View>
         <Text>Brasileiro:</Text>
-        <TextInput onChangeText={setBrasileiro}/>
+        <Switch onValueChange={setBrasileiro} value={brasileiro} />
       </View>
     </View>
   );
