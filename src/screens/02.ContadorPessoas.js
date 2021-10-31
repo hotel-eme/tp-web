@@ -9,10 +9,7 @@ export function ContadorPessoasScreen() {
   }
 
   function removePessoa() {
-    if (contador <= 0) {
-      return;
-    }
-    setContador(contador - 1);
+    setContador(Math.max(0, contador - 1));
   }
 
   return (
