@@ -1,4 +1,5 @@
 import Slider from '@react-native-community/slider';
+import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 
@@ -23,11 +24,22 @@ export function AberturaContaBancariaScreen() {
       </View>
       <View>
         <Text>Sexo:</Text>
-        <TextInput onChangeText={setSexo}/>
+        <Picker onValueChange={setSexo}>
+          <Picker.Item label="Masculino" value="m" />
+          <Picker.Item label="Feminino" value="f" />
+          <Picker.Item label="Outro" value="x" />
+        </Picker>
       </View>
       <View>
         <Text>Escolaridade:</Text>
-        <TextInput onChangeText={setEscolaridade}/>
+        <Picker onValueChange={setEscolaridade}>
+          <Picker.Item label="Ensino fundamental incompleto" value="f-" />
+          <Picker.Item label="Ensino fundamental completo" value="f+" />
+          <Picker.Item label="Ensino médio incompleto" value="m-" />
+          <Picker.Item label="Ensino médio completo" value="m+" />
+          <Picker.Item label="Ensino superior incompleto" value="s-" />
+          <Picker.Item label="Ensino superior completo" value="s+" />
+        </Picker>
       </View>
       <View>
         <Text>Limite:</Text>
