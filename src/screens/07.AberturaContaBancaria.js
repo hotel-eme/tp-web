@@ -1,5 +1,6 @@
+import Slider from '@react-native-community/slider';
 import React, { useState } from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 
 export function AberturaContaBancariaScreen() {
   var [nome, setNome] = useState(null);
@@ -8,6 +9,7 @@ export function AberturaContaBancariaScreen() {
   var [escolaridade, setEscolaridade] = useState(null);
   var [limite, setLimite] = useState(null);
   var [brasileiro, setBrasileiro] = useState(null);
+  const limiteMaximo = 50000;
 
   return (
     <View>
@@ -29,7 +31,12 @@ export function AberturaContaBancariaScreen() {
       </View>
       <View>
         <Text>Limite:</Text>
-        <TextInput onChangeText={setLimite}/>
+        <Slider
+          onValueChange={setLimite}
+          minimumValue={0}
+          maximumValue={limiteMaximo}
+        />
+        <Text>{limite}</Text>
       </View>
       <View>
         <Text>Brasileiro:</Text>
