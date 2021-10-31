@@ -48,6 +48,7 @@ export function AberturaContaBancariaScreen() {
           value={limite}
           minimumValue={0}
           maximumValue={limiteMaximo}
+          step={limiteMaximo / 20}
         />
         <Text>{limite}</Text>
       </View>
