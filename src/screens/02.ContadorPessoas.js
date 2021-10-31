@@ -18,8 +18,8 @@ export function ContadorPessoasScreen() {
   return (
     <View>
       <Text style={{ fontSize: 40 }}>{contador}</Text>
-      <Button title="+" onPress={adicionaPessoa}></Button>
-      <Button title="-" onPress={removePessoa}></Button>
+      <Button color="green" title="Adiciona" onPress={adicionaPessoa}></Button>
+      <Button color="red" title="Remove" onPress={removePessoa}></Button>
     </View>
   );
 }
