@@ -13,6 +13,21 @@ export function AberturaContaBancariaScreen() {
   var [exibeDadosInformados, setExibeDadosInformados] = useState(false);
   const limiteMaximo = 50000;
 
+  const opcoesSexo = {
+    'm': 'Masculino',
+    'f': 'Feminino',
+    'x': 'Outro',
+  };
+
+  const opcoesEscolaridade = {
+    'f-': 'Ensino fundamental incompleto',
+    'f+': 'Ensino fundamental completo',
+    'm-': 'Ensino médio incompleto',
+    'm+': 'Ensino médio completo',
+    's-': 'Ensino superior incompleto',
+    's+': 'Ensino superior completo',
+  }
+
   return (
     <View>
       <View>
@@ -36,9 +51,10 @@ export function AberturaContaBancariaScreen() {
           disabled={exibeDadosInformados}
           onValueChange={setSexo}
         >
-          <Picker.Item label="Masculino" value="m" />
-          <Picker.Item label="Feminino" value="f" />
-          <Picker.Item label="Outro" value="x" />
+          <Picker.Item label="Selecione" key={null} />
+          {Object.entries(opcoesSexo).map(([valor, texto], i) => (
+            <Picker.Item key={i} label={texto} value={valor} />
+          ))}
         </Picker>
       </View>
       <View>
@@ -47,12 +63,10 @@ export function AberturaContaBancariaScreen() {
           disabled={exibeDadosInformados}
           onValueChange={setEscolaridade}
         >
-          <Picker.Item label="Ensino fundamental incompleto" value="f-" />
-          <Picker.Item label="Ensino fundamental completo" value="f+" />
-          <Picker.Item label="Ensino médio incompleto" value="m-" />
-          <Picker.Item label="Ensino médio completo" value="m+" />
-          <Picker.Item label="Ensino superior incompleto" value="s-" />
-          <Picker.Item label="Ensino superior completo" value="s+" />
+          <Picker.Item label="Selecione" />
+          {Object.entries(opcoesEscolaridade).map(([valor, texto], i) => (
+            <Picker.Item key={i} label={texto} value={valor} />
+          ))}
         </Picker>
       </View>
       <View>
@@ -83,8 +97,8 @@ export function AberturaContaBancariaScreen() {
         <Text>Dados Informados:</Text>
         <Text>Nome: {nome}</Text>
         <Text>Idade: {idade}</Text>
-        <Text>Sexo: {sexo}</Text>
-        <Text>Escolaridade: {escolaridade}</Text>
+        <Text>Sexo: {opcoesSexo[sexo]}</Text>
+        <Text>Escolaridade: {opcoesEscolaridade[escolaridade]}</Text>
         <Text>Limite: {limite}</Text>
         <Text>Brasileiro: {brasileiro ? 'sim' : 'não'}</Text>
       </View>}
