@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button, Image, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from "@react-navigation/native";
 
 
 
-function DadosPessoaisScreen({ navigation}) {
+function DadosPessoaisScreen({ navigation }) {
   return (
     <View>
       <Text>John Doe</Text>
@@ -13,36 +13,36 @@ function DadosPessoaisScreen({ navigation}) {
   );
 }
 
-function FormacaoScreen({ navigation}) {
+function FormacaoScreen({ navigation }) {
   return (
     <View>
-        <Text>ADS</Text>
+      <Text>ADS</Text>
     </View>
   );
 }
 
-function FotoPerfilScreen({ navigation}) {
+function FotoPerfilScreen({ navigation }) {
   return (
     <View>
-        <Image
+      <Image
         style={{width: 200, height: 200}}  // obrigatório para a imagem ser exibida
-        source={{uri: 'https://placekitten.com/400/400'}}/>
+        source={{uri: 'https://placekitten.com/400/400'}} />
     </View>
   );
 }
 
-function ExperienciaScreen({ navigation}) {
+function ExperienciaScreen({ navigation }) {
   return (
     <View>
-        <Text>Programação</Text>
+      <Text>Programação</Text>
     </View>
   );
 }
 
-function ProjetoScreen({ navigation}) {
+function ProjetoScreen({ navigation }) {
   return (
     <View>
-        <Text>Apollo 11</Text>
+      <Text>Apollo 11</Text>
     </View>
   );
 }
