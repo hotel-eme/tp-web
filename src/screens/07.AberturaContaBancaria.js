@@ -1,7 +1,7 @@
 import Slider from '@react-native-community/slider';
 import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
-import { Switch, Text, TextInput, View } from 'react-native';
+import { Button, Switch, Text, TextInput, View } from 'react-native';
 
 export function AberturaContaBancariaScreen() {
   var [nome, setNome] = useState(null);
@@ -10,7 +10,12 @@ export function AberturaContaBancariaScreen() {
   var [escolaridade, setEscolaridade] = useState(null);
   var [limite, setLimite] = useState(null);
   var [brasileiro, setBrasileiro] = useState(true);
+  var [exibeDadosInformados, setExibeDadosInformados] = useState(false);
   const limiteMaximo = 50000;
+
+  function confirmaDadosInformados() {
+    setExibeDadosInformados(true);
+  }
 
   return (
     <View>
@@ -55,6 +60,17 @@ export function AberturaContaBancariaScreen() {
         <Text>Brasileiro:</Text>
         <Switch onValueChange={setBrasileiro} value={brasileiro} />
       </View>
+      <Button onPress={confirmaDadosInformados} title="Confirmar" />
+      {exibeDadosInformados &&
+      <View>
+        <Text>Dados Informados:</Text>
+        <Text>Nome: {nome}</Text>
+        <Text>Idade: {idade}</Text>
+        <Text>Sexo: {sexo}</Text>
+        <Text>Escolaridade: {escolaridade}</Text>
+        <Text>Limite: {limite}</Text>
+        <Text>Brasileiro: {brasileiro ? 'sim' : 'não'}</Text>
+      </View>}
     </View>
   );
 }
