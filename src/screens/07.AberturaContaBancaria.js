@@ -25,7 +25,7 @@ export function AberturaContaBancariaScreen() {
       </View>
       <View>
         <Text>Idade:</Text>
-        <TextInput onChangeText={setIdade} disabled={exibeDadosInformados} />
+        <TextInput onChangeText={setIdade} disabled={exibeDadosInformados} keyboardType="numeric" />
       </View>
       <View>
         <Text>Sexo:</Text>
