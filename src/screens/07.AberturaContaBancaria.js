@@ -35,6 +35,7 @@ export function AberturaContaBancariaScreen() {
         <TextInput
           disabled={exibeDadosInformados}
           onChangeText={setNome}
+          placeholder="Insira seu nome"
         />
       </View>
       <View>
@@ -43,6 +44,7 @@ export function AberturaContaBancariaScreen() {
           disabled={exibeDadosInformados}
           keyboardType="numeric"
           onChangeText={setIdade}
+          placeholder="Insira sua idade"
         />
       </View>
       <View>
