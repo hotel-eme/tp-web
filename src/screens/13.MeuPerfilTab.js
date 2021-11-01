@@ -16,7 +16,7 @@ function DadosPessoaisScreen() {
 function FormacaoScreen() {
   return (
     <View>
-        <Text>ADS</Text>
+      <Text>ADS</Text>
     </View>
   );
 }
@@ -24,9 +24,9 @@ function FormacaoScreen() {
 function FotoPerfilScreen() {
   return (
     <View>
-        <Image
+      <Image
         style={{width: 200, height: 200}}  // obrigatório para a imagem ser exibida
-        source={{uri: 'https://placekitten.com/400/400'}}/>
+        source={{uri: 'https://placekitten.com/400/400'}} />
     </View>
   );
 }
@@ -34,7 +34,7 @@ function FotoPerfilScreen() {
 function ExperienciaScreen() {
   return (
     <View>
-        <Text>Programação</Text>
+      <Text>Programação</Text>
     </View>
   );
 }
@@ -42,7 +42,7 @@ function ExperienciaScreen() {
 function ProjetoScreen() {
   return (
     <View>
-        <Text>Apollo 11</Text>
+      <Text>Apollo 11</Text>
     </View>
   );
 }
