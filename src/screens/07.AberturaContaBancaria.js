@@ -13,23 +13,29 @@ export function AberturaContaBancariaScreen() {
   var [exibeDadosInformados, setExibeDadosInformados] = useState(false);
   const limiteMaximo = 50000;
 
-  function confirmaDadosInformados() {
-    setExibeDadosInformados(true);
-  }
-
   return (
     <View>
       <View>
         <Text>Nome:</Text>
-        <TextInput onChangeText={setNome} disabled={exibeDadosInformados} />
+        <TextInput
+          disabled={exibeDadosInformados}
+          onChangeText={setNome}
+        />
       </View>
       <View>
         <Text>Idade:</Text>
-        <TextInput onChangeText={setIdade} disabled={exibeDadosInformados} keyboardType="numeric" />
+        <TextInput
+          disabled={exibeDadosInformados}
+          keyboardType="numeric"
+          onChangeText={setIdade}
+        />
       </View>
       <View>
         <Text>Sexo:</Text>
-        <Picker onValueChange={setSexo} disabled={exibeDadosInformados}>
+        <Picker
+          disabled={exibeDadosInformados}
+          onValueChange={setSexo}
+        >
           <Picker.Item label="Masculino" value="m" />
           <Picker.Item label="Feminino" value="f" />
           <Picker.Item label="Outro" value="x" />
@@ -37,7 +43,10 @@ export function AberturaContaBancariaScreen() {
       </View>
       <View>
         <Text>Escolaridade:</Text>
-        <Picker onValueChange={setEscolaridade} disabled={exibeDadosInformados}>
+        <Picker
+          disabled={exibeDadosInformados}
+          onValueChange={setEscolaridade}
+        >
           <Picker.Item label="Ensino fundamental incompleto" value="f-" />
           <Picker.Item label="Ensino fundamental completo" value="f+" />
           <Picker.Item label="Ensino médio incompleto" value="m-" />
@@ -49,21 +58,28 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Limite:</Text>
         <Slider
-          onValueChange={setLimite}
-          minimumValue={0}
-          maximumValue={limiteMaximo}
-          step={limiteMaximo / 20}
           disabled={exibeDadosInformados}
+          maximumValue={limiteMaximo}
+          minimumValue={0}
+          onValueChange={setLimite}
+          step={limiteMaximo / 20}
         />
         <Text>{limite}</Text>
       </View>
       <View>
         <Text>Brasileiro:</Text>
-        <Switch onValueChange={setBrasileiro} value={brasileiro} disabled={exibeDadosInformados} />
+        <Switch
+          disabled={exibeDadosInformados}
+          onValueChange={setBrasileiro}
+          value={brasileiro}
+        />
       </View>
-      <Button onPress={confirmaDadosInformados} title="Confirmar" disabled={exibeDadosInformados} />
-      {exibeDadosInformados &&
-      <View>
+      <Button
+        disabled={exibeDadosInformados}
+        onPress={() => setExibeDadosInformados(true)}
+        title="Confirmar"
+      />
+      {exibeDadosInformados && <View>
         <Text>Dados Informados:</Text>
         <Text>Nome: {nome}</Text>
         <Text>Idade: {idade}</Text>
