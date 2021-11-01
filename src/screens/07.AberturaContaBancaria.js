@@ -21,15 +21,15 @@ export function AberturaContaBancariaScreen() {
     <View>
       <View>
         <Text>Nome:</Text>
-        <TextInput onChangeText={setNome}/>
+        <TextInput onChangeText={setNome} disabled={exibeDadosInformados} />
       </View>
       <View>
         <Text>Idade:</Text>
-        <TextInput onChangeText={setIdade}/>
+        <TextInput onChangeText={setIdade} disabled={exibeDadosInformados} />
       </View>
       <View>
         <Text>Sexo:</Text>
-        <Picker onValueChange={setSexo}>
+        <Picker onValueChange={setSexo} disabled={exibeDadosInformados}>
           <Picker.Item label="Masculino" value="m" />
           <Picker.Item label="Feminino" value="f" />
           <Picker.Item label="Outro" value="x" />
@@ -37,7 +37,7 @@ export function AberturaContaBancariaScreen() {
       </View>
       <View>
         <Text>Escolaridade:</Text>
-        <Picker onValueChange={setEscolaridade}>
+        <Picker onValueChange={setEscolaridade} disabled={exibeDadosInformados}>
           <Picker.Item label="Ensino fundamental incompleto" value="f-" />
           <Picker.Item label="Ensino fundamental completo" value="f+" />
           <Picker.Item label="Ensino médio incompleto" value="m-" />
@@ -53,14 +53,15 @@ export function AberturaContaBancariaScreen() {
           minimumValue={0}
           maximumValue={limiteMaximo}
           step={limiteMaximo / 20}
+          disabled={exibeDadosInformados}
         />
         <Text>{limite}</Text>
       </View>
       <View>
         <Text>Brasileiro:</Text>
-        <Switch onValueChange={setBrasileiro} value={brasileiro} />
+        <Switch onValueChange={setBrasileiro} value={brasileiro} disabled={exibeDadosInformados} />
       </View>
-      <Button onPress={confirmaDadosInformados} title="Confirmar" />
+      <Button onPress={confirmaDadosInformados} title="Confirmar" disabled={exibeDadosInformados} />
       {exibeDadosInformados &&
       <View>
         <Text>Dados Informados:</Text>
