@@ -9,17 +9,14 @@ export function ContadorPessoasScreen() {
   }
 
   function removePessoa() {
-    if (contador <= 0) {
-      return;
-    }
-    setContador(contador - 1);
+    setContador(Math.max(0, contador - 1));
   }
 
   return (
     <View>
       <Text style={{ fontSize: 40 }}>{contador}</Text>
-      <Button title="+" onPress={adicionaPessoa}></Button>
-      <Button title="-" onPress={removePessoa}></Button>
+      <Button color="green" title="Adiciona" onPress={adicionaPessoa}></Button>
+      <Button color="red" title="Remove" onPress={removePessoa} disabled={contador == 0}></Button>
     </View>
   );
 }
