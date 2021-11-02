@@ -3,14 +3,14 @@ import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
 import { Button, Switch, Text, TextInput, View } from 'react-native';
 
-export function AberturaContaBancariaScreen() {
+export function Formulario() {
   var [nome, setNome] = useState(null);
   var [idade, setIdade] = useState(null);
   var [sexo, setSexo] = useState(null);
   var [escolaridade, setEscolaridade] = useState(null);
   var [limite, setLimite] = useState(null);
   var [brasileiro, setBrasileiro] = useState(true);
-  var [exibeDadosInformados, setExibeDadosInformados] = useState(false);
+  var [desabilitado, setDesabilitado] = useState(false);
   const limiteMaximo = 50000;
 
   const opcoesSexo = {
@@ -33,7 +33,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Nome:</Text>
         <TextInput
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           onChangeText={setNome}
           placeholder="Insira seu nome"
         />
@@ -41,7 +41,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Idade:</Text>
         <TextInput
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           keyboardType="numeric"
           onChangeText={setIdade}
           placeholder="Insira sua idade"
@@ -50,7 +50,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Sexo:</Text>
         <Picker
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           onValueChange={setSexo}
         >
           <Picker.Item label="Selecione" key={null} />
@@ -62,7 +62,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Escolaridade:</Text>
         <Picker
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           onValueChange={setEscolaridade}
         >
           <Picker.Item label="Selecione" />
@@ -74,7 +74,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Limite:</Text>
         <Slider
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           maximumValue={limiteMaximo}
           minimumValue={0}
           onValueChange={setLimite}
@@ -85,25 +85,24 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Brasileiro:</Text>
         <Switch
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           onValueChange={setBrasileiro}
           value={brasileiro}
         />
       </View>
       <Button
-        disabled={exibeDadosInformados}
-        onPress={() => setExibeDadosInformados(true)}
+        disabled={desabilitado}
+        onPress={() => setDesabilitado(true)}
         title="Confirmar"
       />
-      {exibeDadosInformados && <View>
-        <Text>Dados Informados:</Text>
-        <Text>Nome: {nome}</Text>
-        <Text>Idade: {idade}</Text>
-        <Text>Sexo: {opcoesSexo[sexo]}</Text>
-        <Text>Escolaridade: {opcoesEscolaridade[escolaridade]}</Text>
-        <Text>Limite: {limite}</Text>
-        <Text>Brasileiro: {brasileiro ? 'sim' : 'não'}</Text>
-      </View>}
     </View>
   );
+}
+
+export function AberturaContaBancariaScreen() {
+  return (
+    <View>
+      <Formulario />
+    </View>
+  )
 }

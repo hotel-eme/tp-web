@@ -2,12 +2,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from 'react';
 import { Button, Text, View } from 'react-native';
+import { Formulario } from "./07.AberturaContaBancaria";
 
 function FormularioScreen({ navigation }) {
   return (
     <View>
-      <Text>form</Text>
-      <Button title="Confirmar" onPress={() => navigation.navigate('Confimação de dados')} />
+      <Formulario />
     </View>
   );
 }
