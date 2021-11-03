@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import { Button, Image, Text, TextInput, View } from 'react-native';
 
+const classificacoes = {
+  // imc: classificacao
+  // https://www.tuasaude.com/imc/
+  0: 'Muito abaixo do peso',
+  17: 'Abaixo do peso',
+  18.5: 'Peso normal',
+  25: 'Acima do peso',
+  30: 'Obesidade I',
+  35: 'Obesidade II',
+  40: 'Obesidade III',
+};
+
 export function CalculoIMCScreen() {
   var [peso, setPeso] = useState(null);
   var [altura, setAltura] = useState(null);
@@ -10,28 +22,15 @@ export function CalculoIMCScreen() {
   function verifica() {
     var imc = peso / (altura * altura);
     setResultado(imc);
-    if (imc <= 18.5) {
-      setClassificacao("Abaixo do Peso");
-    }
-    else if ((imc >= 18.6) && (imc <= 24.9)) {
-      setClassificacao("Peso Normal");
-    }
-    else if ((imc > 25) && (imc < 29.9)) {
-      setClassificacao("Sobrepeso");
-    }
-    else if ((imc > 30) && (imc < 34.9)) {
-      setClassificacao("Obesidade Grau I");
-    }
-    else if ((imc > 35) && (imc < 39.9)) {
-      setClassificacao("Obesidade Grau II");
-    }
-    else if (imc >= 40) {
-      setClassificacao("Obesidade Grau III ou Móbida");
-    }
-    else {
-      setClassificacao("Verifique os valores digitados");
+
+    // Seleciona classificação verificando cada item
+    const imcsOrdenadosMaiorMenor = Object.keys(classificacoes).sort().reverse();
+    for (const imcReferencia of imcsOrdenadosMaiorMenor) if (imc > imcReferencia) {
+      setClassificacao(classificacoes[imcReferencia]);
+      break;
     }
   }
+
   return (
     <View>
       <Image style={{ width: 200, height: 200 }} source={require('../imagens/IMC.png')} />
