@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import { TextInput, View, Text, Button } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Text, TextInput, View } from 'react-native';
 
 export function MeuCepScreen() {
   var [cep, setCep] = useState(null);
