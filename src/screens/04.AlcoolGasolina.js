@@ -5,7 +5,7 @@ export function AlcoolGasolinaScreen() {
   var [alcool, setAlcool] = useState(null);
   var [gasolina, setGasolina] = useState(null);
   var [combustivel, setCombustivel] = useState(null);
-  var [resultado, setResultado] = useState(0);
+  var [resultado ,setResultado] = useState(0);
 
   function calcula() {
     var combustivel = alcool / gasolina
