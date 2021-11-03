@@ -6,6 +6,7 @@ import { MeuPerfilScreen } from "./src/screens/01.MeuPerfil";
 import { ContadorPessoasScreen } from "./src/screens/02.ContadorPessoas";
 import { MultiplicadorDoisNumerosScreen } from "./src/screens/03.MultiplicadorDoisNumeros";
 import { AberturaContaBancariaScreen } from "./src/screens/07.AberturaContaBancaria";
+import { JogoNumeroAleatorioScreen } from "./src/screens/06.JogoNumeroAleatorio";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ function HomeScreen(props) {
       <Button title="Contador de Pessoas" onPress={function () { props.navigation.navigate('Contador de Pessoas') }} />
       <Button title="Multiplicador de Dois Números" onPress={function () { props.navigation.navigate('Multiplicador de Dois Números') }} />
       <Button title="Abertura de Conta Bancária" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária') }} />
+      <Button title="Jogo do n° Aleatório" onPress={function () { props.navigation.navigate('Jogo do n° Aleatório') }} />
     </View>
   );
 }
@@ -29,6 +31,8 @@ export default function App() {
         <Stack.Screen name="Contador de Pessoas" component={ContadorPessoasScreen} />
         <Stack.Screen name="Multiplicador de Dois Números" component={MultiplicadorDoisNumerosScreen} />
         <Stack.Screen name="Abertura de Conta Bancária" component={AberturaContaBancariaScreen} />
+        <Stack.Screen name="Jogo do n° Aleatório" component={JogoNumeroAleatorioScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
