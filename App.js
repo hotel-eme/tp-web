@@ -6,6 +6,7 @@ import { MeuPerfilScreen } from "./src/screens/01.MeuPerfil";
 import { ContadorPessoasScreen } from "./src/screens/02.ContadorPessoas";
 import { MultiplicadorDoisNumerosScreen } from "./src/screens/03.MultiplicadorDoisNumeros";
 import { AberturaContaBancariaScreen } from "./src/screens/07.AberturaContaBancaria";
+import { MeuPerfilScreenDrawer } from "./src/screens/12.MeuPerfilDrawer";
 import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
 
 const Stack = createNativeStackNavigator();
@@ -17,6 +18,7 @@ function HomeScreen(props) {
       <Button title="Contador de Pessoas" onPress={function () { props.navigation.navigate('Contador de Pessoas') }} />
       <Button title="Multiplicador de Dois Números" onPress={function () { props.navigation.navigate('Multiplicador de Dois Números') }} />
       <Button title="Abertura de Conta Bancária" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária') }} />
+      <Button title="Meu Perfil com Drawer" onPress={function () { props.navigation.navigate('Meu Perfil com Drawer') }} />
       <Button title="Meu Perfil com Tab" onPress={function () { props.navigation.navigate('Meu Perfil Tab') }} />
     </View>
   );
@@ -31,6 +33,7 @@ export default function App() {
         <Stack.Screen name="Contador de Pessoas" component={ContadorPessoasScreen} />
         <Stack.Screen name="Multiplicador de Dois Números" component={MultiplicadorDoisNumerosScreen} />
         <Stack.Screen name="Abertura de Conta Bancária" component={AberturaContaBancariaScreen} />
+        <Stack.Screen name="Meu Perfil com Drawer" component={MeuPerfilScreenDrawer} />
         <Stack.Screen name="Meu Perfil Tab" component={MeuPerfilTab} />
       </Stack.Navigator>
     </NavigationContainer>
