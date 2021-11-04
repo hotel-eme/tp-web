@@ -9,6 +9,7 @@ import { CalculoIMCScreen } from "./src/screens/05.CalculoIMC";
 import { AberturaContaBancariaScreen } from "./src/screens/07.AberturaContaBancaria";
 import { AnuncioParaVendaProdutosScreen } from "./src/screens/08.AnuncioParaVendaProdutos";
 import { VagaEmpregoScreen } from "./src/screens/09.VagaEmprego";
+import { AberturaContaBancariaStack } from "./src/screens/11.AberturaContaBancariaStack";
 import { MeuPerfilScreenDrawer } from "./src/screens/12.MeuPerfilDrawer";
 import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
@@ -25,6 +26,7 @@ function HomeScreen(props) {
       <Button title="Abertura de Conta Bancária" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária') }} />
       <Button title="Anúncios Para Venda de Produtos" onPress={function () { props.navigation.navigate('Anúncios Para Venda de Produtos') }} />
       <Button title="Vagas de Emprego TI" onPress={function () { props.navigation.navigate('Vagas de Emprego de TI') }} />
+      <Button title="Abertura de Conta Bancária (Stack)" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária (Stack)') }} />
       <Button title="Meu Perfil com Drawer" onPress={function () { props.navigation.navigate('Meu Perfil com Drawer') }} />
       <Button title="Meu Perfil com Tab" onPress={function () { props.navigation.navigate('Meu Perfil Tab') }} />
       <Button title="Consultar CEP" onPress={function () { props.navigation.navigate('Consultar CEP') }} />
@@ -44,6 +46,7 @@ export default function App() {
         <Stack.Screen name="Abertura de Conta Bancária" component={AberturaContaBancariaScreen} />
         <Stack.Screen name="Anúncios Para Venda de Produtos" component={AnuncioParaVendaProdutosScreen} />
         <Stack.Screen name="Vagas de Emprego de TI" component={VagaEmpregoScreen} />
+        <Stack.Screen name="Abertura de Conta Bancária (Stack)" component={AberturaContaBancariaStack} />
         <Stack.Screen name="Meu Perfil com Drawer" component={MeuPerfilScreenDrawer} />
         <Stack.Screen name="Meu Perfil Tab" component={MeuPerfilTab} />
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
