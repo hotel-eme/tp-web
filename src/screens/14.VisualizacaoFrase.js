@@ -10,7 +10,7 @@ export function VisualizacaoFraseScreen() {
     backgroundColor: modoNoturno ? "black" : "white",
     color: modoNoturno ? "white" : "black",
     fontSize: fonteGrande ? 25 : 15,
-  }
+  };
 
   return (
     <View>
