@@ -6,5 +6,5 @@ WORKDIR /app
 RUN npm -g --allow-root install expo-cli@4.12.10
 
 # Instala dependências do projeto
-COPY package.json package-lock.json .
+COPY package.json .
 RUN npm install
