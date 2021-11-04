@@ -12,6 +12,7 @@ import { VagaEmpregoScreen } from "./src/screens/09.VagaEmprego";
 import { MeuPerfilScreenDrawer } from "./src/screens/12.MeuPerfilDrawer";
 import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
+import { VisualizacaoFraseScreen } from "./src/screens/14.VisualizacaoFrase";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ function HomeScreen(props) {
       <Button title="Meu Perfil com Drawer" onPress={function () { props.navigation.navigate('Meu Perfil com Drawer') }} />
       <Button title="Meu Perfil com Tab" onPress={function () { props.navigation.navigate('Meu Perfil Tab') }} />
       <Button title="Consultar CEP" onPress={function () { props.navigation.navigate('Consultar CEP') }} />
+      <Button title="Visualizar a frase com preferências do usuário" onPress={function () { props.navigation.navigate('Frase')}} />
     </View>
   );
 }
@@ -47,6 +49,7 @@ export default function App() {
         <Stack.Screen name="Meu Perfil com Drawer" component={MeuPerfilScreenDrawer} />
         <Stack.Screen name="Meu Perfil Tab" component={MeuPerfilTab} />
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
+        <Stack.Screen name="Frase" component={VisualizacaoFraseScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
