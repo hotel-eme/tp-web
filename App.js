@@ -12,7 +12,7 @@ import { VagaEmpregoScreen } from "./src/screens/09.VagaEmprego";
 import { MeuPerfilScreenDrawer } from "./src/screens/12.MeuPerfilDrawer";
 import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
-import { filmesScreen } from "./src/screens/20.filmes";
+import { FilmesScreen } from "./src/screens/20.Filmes";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,7 +49,7 @@ export default function App() {
         <Stack.Screen name="Meu Perfil com Drawer" component={MeuPerfilScreenDrawer} />
         <Stack.Screen name="Meu Perfil Tab" component={MeuPerfilTab} />
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
-        <Stack.Screen name="Filmes" component={filmesScreen} />
+        <Stack.Screen name="Filmes" component={FilmesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
