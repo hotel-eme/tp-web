@@ -3,37 +3,38 @@ import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
 import { Button, Switch, Text, TextInput, View } from 'react-native';
 
-export function AberturaContaBancariaScreen() {
+const opcoesSexo = {
+  'm': 'Masculino',
+  'f': 'Feminino',
+  'x': 'Outro',
+};
+
+const opcoesEscolaridade = {
+  'f-': 'Ensino fundamental incompleto',
+  'f+': 'Ensino fundamental completo',
+  'm-': 'Ensino médio incompleto',
+  'm+': 'Ensino médio completo',
+  's-': 'Ensino superior incompleto',
+  's+': 'Ensino superior completo',
+}
+
+const limiteMaximo = 50000;
+
+export function Formulario(props) {
   var [nome, setNome] = useState(null);
   var [idade, setIdade] = useState(null);
   var [sexo, setSexo] = useState(null);
   var [escolaridade, setEscolaridade] = useState(null);
   var [limite, setLimite] = useState(null);
   var [brasileiro, setBrasileiro] = useState(true);
-  var [exibeDadosInformados, setExibeDadosInformados] = useState(false);
-  const limiteMaximo = 50000;
-
-  const opcoesSexo = {
-    'm': 'Masculino',
-    'f': 'Feminino',
-    'x': 'Outro',
-  };
-
-  const opcoesEscolaridade = {
-    'f-': 'Ensino fundamental incompleto',
-    'f+': 'Ensino fundamental completo',
-    'm-': 'Ensino médio incompleto',
-    'm+': 'Ensino médio completo',
-    's-': 'Ensino superior incompleto',
-    's+': 'Ensino superior completo',
-  }
+  var [desabilitado, setDesabilitado] = useState(false);
 
   return (
     <View>
       <View>
         <Text>Nome:</Text>
         <TextInput
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           onChangeText={setNome}
           placeholder="Insira seu nome"
         />
@@ -41,7 +42,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Idade:</Text>
         <TextInput
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           keyboardType="numeric"
           onChangeText={setIdade}
           placeholder="Insira sua idade"
@@ -50,7 +51,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Sexo:</Text>
         <Picker
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           onValueChange={setSexo}
         >
           <Picker.Item label="Selecione" key={null} />
@@ -62,7 +63,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Escolaridade:</Text>
         <Picker
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           onValueChange={setEscolaridade}
         >
           <Picker.Item label="Selecione" />
@@ -74,7 +75,7 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Limite:</Text>
         <Slider
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           maximumValue={limiteMaximo}
           minimumValue={0}
           onValueChange={setLimite}
@@ -85,25 +86,42 @@ export function AberturaContaBancariaScreen() {
       <View>
         <Text>Brasileiro:</Text>
         <Switch
-          disabled={exibeDadosInformados}
+          disabled={desabilitado}
           onValueChange={setBrasileiro}
           value={brasileiro}
         />
       </View>
       <Button
-        disabled={exibeDadosInformados}
-        onPress={() => setExibeDadosInformados(true)}
+        disabled={desabilitado}
+        onPress={function () {
+          setDesabilitado(true);
+          props.confirmacaoCallback(nome, idade, sexo, escolaridade, limite, brasileiro);
+        }}
         title="Confirmar"
       />
-      {exibeDadosInformados && <View>
-        <Text>Dados Informados:</Text>
-        <Text>Nome: {nome}</Text>
-        <Text>Idade: {idade}</Text>
-        <Text>Sexo: {opcoesSexo[sexo]}</Text>
-        <Text>Escolaridade: {opcoesEscolaridade[escolaridade]}</Text>
-        <Text>Limite: {limite}</Text>
-        <Text>Brasileiro: {brasileiro ? 'sim' : 'não'}</Text>
-      </View>}
     </View>
   );
+}
+
+export function Confirmacao(props) {
+  return <View>
+    <Text>Dados Informados:</Text>
+    <Text>Nome: {props.nome}</Text>
+    <Text>Idade: {props.idade}</Text>
+    <Text>Sexo: {opcoesSexo[props.sexo]}</Text>
+    <Text>Escolaridade: {opcoesEscolaridade[props.escolaridade]}</Text>
+    <Text>Limite: {props.limite}</Text>
+    <Text>Brasileiro: {props.brasileiro ? 'sim' : 'não'}</Text>
+  </View>
+}
+
+export function AberturaContaBancariaScreen() {
+  var [dadosInformados, setDadosInformados] = useState(null);
+
+  return (
+    <View>
+      <Formulario confirmacaoCallback={ (nome, idade, sexo, escolaridade, limite, brasileiro) => setDadosInformados({nome, idade, sexo, escolaridade, limite, brasileiro}) } />
+      {dadosInformados && <Confirmacao {...dadosInformados} />}
+    </View>
+  )
 }
