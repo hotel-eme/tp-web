@@ -16,7 +16,7 @@ function HomeScreen(props) {
       <Button title="Meu Perfil" onPress={function () { props.navigation.navigate('Meu Perfil') }} />
       <Button title="Contador de Pessoas" onPress={function () { props.navigation.navigate('Contador de Pessoas') }} />
       <Button title="Multiplicador de Dois Números" onPress={function () { props.navigation.navigate('Multiplicador de Dois Números') }} />
-      <Button title="Jogo do n° Aleatório" onPress={function () { props.navigation.navigate('Jogo do n° Aleatório') }} />
+      <Button title="Jogo do Número Aleatório" onPress={function () { props.navigation.navigate('Jogo do Número Aleatório') }} />
       <Button title="Abertura de Conta Bancária" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária') }} />
     </View>
   );
@@ -30,7 +30,7 @@ export default function App() {
         <Stack.Screen name="Meu Perfil" component={MeuPerfilScreen} />
         <Stack.Screen name="Contador de Pessoas" component={ContadorPessoasScreen} />
         <Stack.Screen name="Multiplicador de Dois Números" component={MultiplicadorDoisNumerosScreen} />
-        <Stack.Screen name="Jogo do n° Aleatório" component={JogoNumeroAleatorioScreen} />
+        <Stack.Screen name="Jogo do Número Aleatório" component={JogoNumeroAleatorioScreen} />
         <Stack.Screen name="Abertura de Conta Bancária" component={AberturaContaBancariaScreen} />
       </Stack.Navigator>
     </NavigationContainer>
