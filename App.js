@@ -32,7 +32,6 @@ export default function App() {
         <Stack.Screen name="Multiplicador de Dois Números" component={MultiplicadorDoisNumerosScreen} />
         <Stack.Screen name="Jogo do n° Aleatório" component={JogoNumeroAleatorioScreen} />
         <Stack.Screen name="Abertura de Conta Bancária" component={AberturaContaBancariaScreen} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
