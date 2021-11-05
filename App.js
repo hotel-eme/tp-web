@@ -15,6 +15,7 @@ import { ConversorMoedasScreen } from "./src/screens/10.ConversorMoedas";
 import { AberturaContaBancariaStack } from "./src/screens/11.AberturaContaBancariaStack";
 import { MeuPerfilScreenDrawer } from "./src/screens/12.MeuPerfilDrawer";
 import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
+import { VisualizacaoFraseScreen } from "./src/screens/14.VisualizacaoFrase";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
 
 const Stack = createNativeStackNavigator();
@@ -35,6 +36,7 @@ function HomeScreen(props) {
       <Button title="Abertura de Conta Bancária (Stack)" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária (Stack)') }} />
       <Button title="Meu Perfil com Drawer" onPress={function () { props.navigation.navigate('Meu Perfil com Drawer') }} />
       <Button title="Meu Perfil com Tab" onPress={function () { props.navigation.navigate('Meu Perfil Tab') }} />
+      <Button title="Visualizar a frase com preferências do usuário" onPress={function () { props.navigation.navigate('Frase')}} />
       <Button title="Consultar CEP" onPress={function () { props.navigation.navigate('Consultar CEP') }} />
     </View>
   );
@@ -58,6 +60,7 @@ export default function App() {
         <Stack.Screen name="Abertura de Conta Bancária (Stack)" component={AberturaContaBancariaStack} />
         <Stack.Screen name="Meu Perfil com Drawer" component={MeuPerfilScreenDrawer} />
         <Stack.Screen name="Meu Perfil Tab" component={MeuPerfilTab} />
+        <Stack.Screen name="Frase" component={VisualizacaoFraseScreen} />
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
       </Stack.Navigator>
     </NavigationContainer>
