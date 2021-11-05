@@ -7,6 +7,7 @@ import { ContadorPessoasScreen } from "./src/screens/02.ContadorPessoas";
 import { MultiplicadorDoisNumerosScreen } from "./src/screens/03.MultiplicadorDoisNumeros";
 import { AlcoolGasolinaScreen } from "./src/screens/04.AlcoolGasolina";
 import { CalculoIMCScreen } from "./src/screens/05.CalculoIMC";
+import { JogoNumeroAleatorioScreen } from "./src/screens/06.JogoNumeroAleatorio";
 import { AberturaContaBancariaScreen } from "./src/screens/07.AberturaContaBancaria";
 import { AnuncioParaVendaProdutosScreen } from "./src/screens/08.AnuncioParaVendaProdutos";
 import { VagaEmpregoScreen } from "./src/screens/09.VagaEmprego";
@@ -25,6 +26,7 @@ function HomeScreen(props) {
       <Button title="Multiplicador de Dois Números" onPress={function () { props.navigation.navigate('Multiplicador de Dois Números') }} />
       <Button title="Abastecer com Álcool ou Gasolina" onPress={function () { props.navigation.navigate('Abastecer com Álcool ou Gasolina') }} />
       <Button title="Cálculo de IMC" onPress={function () { props.navigation.navigate('Cálculo de IMC') }} />
+      <Button title="Jogo do Número Aleatório" onPress={function () { props.navigation.navigate('Jogo do Número Aleatório') }} />
       <Button title="Abertura de Conta Bancária" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária') }} />
       <Button title="Anúncios Para Venda de Produtos" onPress={function () { props.navigation.navigate('Anúncios Para Venda de Produtos') }} />
       <Button title="Vagas de Emprego TI" onPress={function () { props.navigation.navigate('Vagas de Emprego de TI') }} />
@@ -46,6 +48,7 @@ export default function App() {
         <Stack.Screen name="Multiplicador de Dois Números" component={MultiplicadorDoisNumerosScreen} />
         <Stack.Screen name="Abastecer com Álcool ou Gasolina" component={AlcoolGasolinaScreen} />
         <Stack.Screen name="Cálculo de IMC" component={CalculoIMCScreen} />
+        <Stack.Screen name="Jogo do Número Aleatório" component={JogoNumeroAleatorioScreen} />
         <Stack.Screen name="Abertura de Conta Bancária" component={AberturaContaBancariaScreen} />
         <Stack.Screen name="Anúncios Para Venda de Produtos" component={AnuncioParaVendaProdutosScreen} />
         <Stack.Screen name="Vagas de Emprego de TI" component={VagaEmpregoScreen} />
