@@ -24,7 +24,7 @@ services:
     ports:
       - 19800:8000
     depends_on:
-      - database
+      database: {condition: service_healthy}
     volumes:
       - ./backend:/app:rw
     environment:
@@ -37,4 +37,7 @@ services:
       - ./.local/database:/var/lib/postgresql/data:rw
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
-
+    healthcheck:
+      test: pg_isready -Upostgres
+      interval: 1s
+      timeout: 30s
