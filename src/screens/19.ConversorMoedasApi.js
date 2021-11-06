@@ -19,7 +19,7 @@ export function ConversorMoedasApiScreen() {
 
   return (
     <View>
-      <Text>Conversor de moedas: Dolar, Real e Euro</Text>
+      <Text>Conversor de moedas: Dolar, Real, Euro e Bitcoin</Text>
       <Text>Valor:</Text>
       <TextInput onChangeText={setValor} />
       <Text>De:</Text>
@@ -28,6 +28,7 @@ export function ConversorMoedasApiScreen() {
         <Picker.Item value="USD" label="Dólar" />
         <Picker.Item value="EUR" label="Euro" />
         <Picker.Item value="BRL" label="Real" />
+        <Picker.Item value="BTC" label="Bitcoin" />
       </Picker>
       <Text>Para:</Text>
       <Picker onValueChange={setMoedaDestino}>
@@ -35,6 +36,7 @@ export function ConversorMoedasApiScreen() {
         <Picker.Item value="USD" label="Dólar" />
         <Picker.Item value="EUR" label="Euro" />
         <Picker.Item value="BRL" label="Real" />
+        <Picker.Item value="BTC" label="Bitcoin" />
       </Picker>
       <Button title="Converter" onPress={converterMoeda}></Button>
       {resultado && <Text>Resultado: {moedaDestino} {resultado}</Text>}
