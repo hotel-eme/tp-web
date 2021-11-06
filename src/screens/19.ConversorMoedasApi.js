@@ -12,7 +12,9 @@ export function ConversorMoedasApiScreen() {
   function converterMoeda() {
     const requisicao = axios.get(`https://economia.awesomeapi.com.br/json/last/${moedaOrigem}-${moedaDestino}`);
     requisicao.then(function (resposta) {
-      setResultado(resposta.data[`${moedaOrigem}${moedaDestino}`].ask);
+      const conversao = parseFloat(resposta.data[`${moedaOrigem}${moedaDestino}`].ask);
+      const valorConvertido = conversao * valor;
+      setResultado(valorConvertido);
     });
   }
 
