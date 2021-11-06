@@ -17,6 +17,7 @@ import { MeuPerfilScreenDrawer } from "./src/screens/12.MeuPerfilDrawer";
 import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
 import { VisualizacaoFraseScreen } from "./src/screens/14.VisualizacaoFrase";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
+import { ConversorMoedasApiScreen } from "./src/screens/19.ConversorMoedasApi"
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ function HomeScreen(props) {
       <Button title="Meu Perfil com Tab" onPress={function () { props.navigation.navigate('Meu Perfil Tab') }} />
       <Button title="Visualizar a frase com preferências do usuário" onPress={function () { props.navigation.navigate('Frase')}} />
       <Button title="Consultar CEP" onPress={function () { props.navigation.navigate('Consultar CEP') }} />
+      <Button title="Conversor de Moedas (API)" onPress={function () { props.navigation.navigate("Conversor de Moedas (API)")}} />
     </View>
   );
 }
@@ -62,6 +64,7 @@ export default function App() {
         <Stack.Screen name="Meu Perfil Tab" component={MeuPerfilTab} />
         <Stack.Screen name="Frase" component={VisualizacaoFraseScreen} />
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
+        <Stack.Screen name="Conversor de Moedas (API)" component={ConversorMoedasApiScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
