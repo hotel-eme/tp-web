@@ -25,6 +25,10 @@ services:
       - 19800:8000
     depends_on:
       database: {condition: service_healthy}
+    healthcheck:
+      test: curl -f http://localhost:8000/api/
+      interval: 1s
+      timeout: 30s
     volumes:
       - ./backend:/app:rw
     environment:
