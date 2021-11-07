@@ -15,9 +15,13 @@ export function TarefasScreen() {
   const [tarefas, setTarefas] = useState([]);
 
   function adicionaTarefa() {
+    if (!(novaTarefa && novaTarefa.trim().length)) {
+      return;  // Aborta função se não há uma nova tarefa preenchida
+    }
+
     // Atualiza coleção de tarefas
     setTarefas([...tarefas, {
-      descricao: novaTarefa,
+      descricao: novaTarefa.trim(),
     }]);
   }
 
