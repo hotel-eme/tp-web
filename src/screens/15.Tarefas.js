@@ -56,6 +56,9 @@ export function TarefasScreen() {
         {tarefas && tarefas.map(function (tarefa) {
           return <Tarefa key={tarefa.id} quandoRemover={buscaTarefas} {...tarefa} />
         })}
+        {tarefas && !tarefas.length && (
+          <Text>Nenhuma tarefa, oba!</Text>
+        )}
       </View>
     </View>
   );
