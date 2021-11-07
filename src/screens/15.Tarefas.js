@@ -7,11 +7,15 @@ const api = axios.create({
   headers: {'Accept': 'application/json'},
 });
 
-function Tarefa({ descricao }) {
+function Tarefa(props) {
+  function removeTarefa() {
+    api.delete(`/${props.id}/`).then(props.quandoRemover);
+  }
+
   return (
     <View style={{ flex: 1, flexDirection: 'row' }}>
-      <Text style={{ flexGrow: 1 }}>{descricao}</Text>
-      <Button title="Apagar" />
+      <Text style={{ flexGrow: 1 }}>{props.descricao}</Text>
+      <Button title="Apagar" onPress={removeTarefa} />
     </View>
   );
 }
@@ -50,7 +54,7 @@ export function TarefasScreen() {
       </View>
       <View>
         {tarefas && tarefas.map(function (tarefa) {
-          return <Tarefa key={tarefa.id} descricao={tarefa.descricao} />
+          return <Tarefa key={tarefa.id} quandoRemover={buscaTarefas} {...tarefa} />
         })}
       </View>
     </View>
