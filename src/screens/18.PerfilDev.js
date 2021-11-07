@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Button, Text, TextInput, View, Image} from 'react-native';
+import { Button, Image, Text, TextInput, View } from 'react-native';
 
 export function PerfilDevScreen() {
   var [foto, setFoto] = useState(null);
