@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import axios from "axios";
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 function ListaAlunos(props) {
   /**
@@ -10,11 +10,16 @@ function ListaAlunos(props) {
    */
   const [alunos, setAlunos] = useState(null);
 
-  if (!alunos) {
+  function buscaAlunos() {
     const requisicao = axios.get('http://localhost:19800/api/alunos/');
     requisicao.then(function (resposta) {
       setAlunos(resposta.data);
     });
+  }
+
+  // Busca alunos com a API ao carregar o componente
+  if (!alunos) {
+    buscaAlunos();
   }
 
   return (
@@ -22,6 +27,9 @@ function ListaAlunos(props) {
       {alunos && alunos.map(function (aluno) {
         return <Aluno key={aluno.id} aluno={aluno} navigation={props.navigation} />
       })}
+      <Button title="Adicionar aluno" onPress={function () {
+        props.navigation.navigate('Cadastro de Aluno', { aoAdicionar: buscaAlunos });
+      }} />
     </View>
   );
 }
@@ -65,9 +73,27 @@ function CadastroAluno(props) {
   /**
    * Tela para cadastro de um novo aluno
    */
+  const [nomeInserido, setNomeInserido] = useState(null);
+  const [cpfInserido, setCpfInserido] = useState(null);
+
+  function cadastrarAluno() {
+    const requisicao = axios.post('http://localhost:19800/api/alunos/', {
+      nome: nomeInserido,
+      cpf: cpfInserido,
+    });
+    requisicao.then(function () {
+      props.navigation.navigate('Lista de Alunos');
+      props.route.params.aoAdicionar();
+    });
+  }
+
   return (
     <View>
-      <Text>cadastro</Text>
+      <Text>Nome:</Text>
+      <TextInput onChangeText={setNomeInserido} />
+      <Text>CPF:</Text>
+      <TextInput onChangeText={setCpfInserido} />
+      <Button title="Cadastrar" onPress={cadastrarAluno} />
     </View>
   );
 }
