@@ -1,12 +1,24 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 
 function ListaAlunos(props) {
+  const [alunos, setAlunos] = useState(null);
+
+  if (!alunos) {
+    const requisicao = axios.get('http://localhost:19800/api/alunos/');
+    requisicao.then(function (resposta) {
+      setAlunos(resposta.data);
+    });
+  }
+
   return (
     <View>
-      <Text>lista</Text>
+      {alunos && alunos.map(function (aluno) {
+        return <Text>{aluno.nome}</Text>
+      })}
     </View>
   );
 }
