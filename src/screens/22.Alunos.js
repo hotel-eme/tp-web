@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import axios from "axios";
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 function ListaAlunos(props) {
   const [alunos, setAlunos] = useState(null);
@@ -17,8 +17,17 @@ function ListaAlunos(props) {
   return (
     <View>
       {alunos && alunos.map(function (aluno) {
-        return <Text>{aluno.nome}</Text>
+        return <Aluno {...aluno} key={aluno.id} />
       })}
+    </View>
+  );
+}
+
+function Aluno(props) {
+  return (
+    <View style={estilos.lista.aluno}>
+      <Text>{props.nome}</Text>
+      <Text>{props.cpf}</Text>
     </View>
   );
 }
@@ -61,3 +70,14 @@ export function AlunosScreen() {
     </NavigationContainer>
   );
 }
+
+const estilos = {
+  lista: StyleSheet.create({
+    aluno: {
+      backgroundColor: 'white',
+      marginHorizontal: 10,
+      marginTop: 10,
+      padding: 10,
+    }
+  }),
+};
