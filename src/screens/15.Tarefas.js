@@ -63,16 +63,26 @@ function NovaTarefa(props) {
   const campoNovaTarefa = useRef();
   const [novaTarefa, setNovaTarefa] = useState(null);
 
+  function tarefaValida() {
+    /**
+     * Valida tarefa preenchida
+     */
+    if (!novaTarefa) return false;  // Se nulo
+    if (!novaTarefa.trim().length) return false;  // Se vazio, mesmo com espaços
+    return true;
+  }
+
   function adicionaTarefa() {
-    if (!(novaTarefa && novaTarefa.trim().length)) {
-      return;  // Aborta função se não há uma nova tarefa preenchida
+    if (!tarefaValida()) {
+      return;  // Aborta função se tarefa não é válida
     }
 
     // Cria nova tarefa e executa callback em seguida
     api.post('/', { descricao: novaTarefa }).then(props.aoAdicionar);
 
-    // Limpa campo
-    campoNovaTarefa.current.clear();
+    // Limpa memória
+    campoNovaTarefa.current.clear();  // Esvazia campo de texto
+    setNovaTarefa(null);  // Esvazia tarefa digita anteriormente
   }
 
   return (
@@ -87,6 +97,7 @@ function NovaTarefa(props) {
         color="green"
         title="Adicionar"
         onPress={adicionaTarefa}
+        disabled={!tarefaValida()}  // Desativa botão quando o campo está vazio
       />
     </View>
   );
