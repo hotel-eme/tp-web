@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 const api = axios.create({
   baseURL: 'http://localhost:19800/api/tarefas/',
@@ -13,9 +13,9 @@ function Tarefa(props) {
   }
 
   return (
-    <View style={{ flex: 1, flexDirection: 'row' }}>
-      <Text style={{ flexGrow: 1 }}>{props.descricao}</Text>
-      <Button title="Apagar" onPress={removeTarefa} />
+    <View style={estilos.tarefa.container}>
+      <Text style={estilos.tarefa.texto}>{props.descricao}</Text>
+      <Button title="🗑" color="#d65453" onPress={removeTarefa} />
     </View>
   );
 }
@@ -48,9 +48,9 @@ export function TarefasScreen() {
 
   return (
     <View>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <TextInput style={{ flexGrow: 1 }} placeholder="O que fazer..." onChangeText={setNovaTarefa} ref={campoNovaTarefa} />
-        <Button title="+" onPress={adicionaTarefa} />
+      <View style={estilos.novaTarefa.container}>
+        <TextInput style={estilos.novaTarefa.campo} placeholder="O que fazer..." onChangeText={setNovaTarefa} ref={campoNovaTarefa} />
+        <Button color="green" title="Adicionar" onPress={adicionaTarefa} />
       </View>
       <View>
         {tarefas && tarefas.map(function (tarefa) {
@@ -63,3 +63,32 @@ export function TarefasScreen() {
     </View>
   );
 }
+
+const estilos = {
+  novaTarefa: StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'row',
+      margin: 10,
+    },
+    campo: {
+      borderBottomColor: '#aaa',
+      borderBottomWidth: 2,
+      flexGrow: 1,
+    },
+  }),
+  tarefa: StyleSheet.create({
+    container: {
+      alignItems: 'center',
+      backgroundColor: 'white',
+      flex: 1,
+      flexDirection: 'row',
+      marginHorizontal: 10,
+      marginVertical: 5,
+    },
+    texto: {
+      flexGrow: 1,
+      marginHorizontal: 10,
+    },
+  }),
+};
