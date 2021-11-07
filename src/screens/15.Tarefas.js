@@ -4,12 +4,48 @@ import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 const api = axios.create({
   baseURL: 'http://localhost:19800/api/tarefas/',
-  headers: {'Accept': 'application/json'},
+  headers: { 'Accept': 'application/json' },
 });
 
+export function TarefasScreen() {
+  /**
+   * Componente principal
+   */
+  const [tarefas, setTarefas] = useState(null);
+
+  function buscaTarefas() {
+    api.get('/').then(function (resposta) {
+      setTarefas(resposta.data);
+    });
+  }
+
+  // Busca tarefas ao inicializar o componente
+  !tarefas && buscaTarefas();
+
+  return (
+    <View>
+      <NovaTarefa aoAdicionar={buscaTarefas} />
+      <View>
+        {tarefas && tarefas.map(function (tarefa) {
+          return (
+            <Tarefa key={tarefa.id} aoRemover={buscaTarefas} {...tarefa} />
+          );
+        })}
+        {tarefas && !tarefas.length && (
+          <Text>Nenhuma tarefa, oba!</Text>
+        )}
+      </View>
+    </View>
+  );
+}
+
 function Tarefa(props) {
+  /**
+   * Componente para exibir cada tarefa
+   */
   function removeTarefa() {
-    api.delete(`/${props.id}/`).then(props.quandoRemover);
+    // Remove tarefa e executa callback em seguida
+    api.delete(`/${props.id}/`).then(props.aoRemover);
   }
 
   return (
@@ -20,46 +56,38 @@ function Tarefa(props) {
   );
 }
 
-export function TarefasScreen() {
+function NovaTarefa(props) {
+  /**
+   * Componente responsável pela criação de tarefas
+   */
   const campoNovaTarefa = useRef();
   const [novaTarefa, setNovaTarefa] = useState(null);
-  const [tarefas, setTarefas] = useState(null);
-
-  function buscaTarefas() {
-    api.get('/').then(function (resposta) {
-      setTarefas(resposta.data);
-    });
-  }
 
   function adicionaTarefa() {
     if (!(novaTarefa && novaTarefa.trim().length)) {
       return;  // Aborta função se não há uma nova tarefa preenchida
     }
 
-    // Cria nova tarefa e atualiza em seguida
-    api.post('/', { descricao: novaTarefa }).then(buscaTarefas);
+    // Cria nova tarefa e executa callback em seguida
+    api.post('/', { descricao: novaTarefa }).then(props.aoAdicionar);
 
     // Limpa campo
     campoNovaTarefa.current.clear();
   }
 
-  // Busca tarefas ao inicializar o componente
-  !tarefas && buscaTarefas();
-
   return (
-    <View>
-      <View style={estilos.novaTarefa.container}>
-        <TextInput style={estilos.novaTarefa.campo} placeholder="O que fazer..." onChangeText={setNovaTarefa} ref={campoNovaTarefa} />
-        <Button color="green" title="Adicionar" onPress={adicionaTarefa} />
-      </View>
-      <View>
-        {tarefas && tarefas.map(function (tarefa) {
-          return <Tarefa key={tarefa.id} quandoRemover={buscaTarefas} {...tarefa} />
-        })}
-        {tarefas && !tarefas.length && (
-          <Text>Nenhuma tarefa, oba!</Text>
-        )}
-      </View>
+    <View style={estilos.novaTarefa.container}>
+      <TextInput
+        ref={campoNovaTarefa}
+        style={estilos.novaTarefa.campo}
+        placeholder="O que fazer..."
+        onChangeText={setNovaTarefa}
+      />
+      <Button
+        color="green"
+        title="Adicionar"
+        onPress={adicionaTarefa}
+      />
     </View>
   );
 }
