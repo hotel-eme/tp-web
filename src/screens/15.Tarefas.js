@@ -1,5 +1,11 @@
+import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Button, Text, TextInput, View } from "react-native";
+
+const api = axios.create({
+  baseURL: 'http://localhost:19800/api/tarefas/',
+  headers: {'Accept': 'application/json'},
+});
 
 function Tarefa({ descricao }) {
   return (
