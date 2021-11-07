@@ -5,6 +5,9 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 function ListaAlunos(props) {
+  /**
+   * Tela de listagem de alunos
+   */
   const [alunos, setAlunos] = useState(null);
 
   if (!alunos) {
@@ -24,6 +27,9 @@ function ListaAlunos(props) {
 }
 
 function Aluno(props) {
+  /**
+   * Componente para exibir cada aluno em uma lista
+   */
   return (
     <View style={estilos.lista.aluno}>
       <Text>{props.nome}</Text>
@@ -33,6 +39,9 @@ function Aluno(props) {
 }
 
 function DetalhesAluno(props) {
+  /**
+   * Tela para exibir detalhes de um aluno
+   */
   return (
     <View>
       <Text>detalhes</Text>
@@ -41,6 +50,9 @@ function DetalhesAluno(props) {
 }
 
 function CadastroAluno(props) {
+  /**
+   * Tela para cadastro de um novo aluno
+   */
   return (
     <View>
       <Text>cadastro</Text>
@@ -49,6 +61,9 @@ function CadastroAluno(props) {
 }
 
 function AlteracaoAluno(props) {
+  /**
+   * Tela para alteração de um aluno existente
+   */
   return (
     <View>
       <Text>alteração</Text>
