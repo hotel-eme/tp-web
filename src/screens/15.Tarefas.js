@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { Button, Text, TextInput, View } from "react-native"
 
 function Tarefa({ descricao }) {
@@ -11,6 +11,7 @@ function Tarefa({ descricao }) {
 }
 
 export function TarefasScreen() {
+  const campoNovaTarefa = useRef();
   const [novaTarefa, setNovaTarefa] = useState(null);
   const [tarefas, setTarefas] = useState([]);
 
@@ -23,12 +24,15 @@ export function TarefasScreen() {
     setTarefas([...tarefas, {
       descricao: novaTarefa.trim(),
     }]);
+
+    // Limpa campo
+    campoNovaTarefa.current.clear();
   }
 
   return (
     <View>
       <View style={{flex: 1, flexDirection: 'row' }}>
-        <TextInput style={{flexGrow: 1}} placeholder="O que fazer..." onChangeText={setNovaTarefa} />
+        <TextInput style={{flexGrow: 1}} placeholder="O que fazer..." onChangeText={setNovaTarefa} ref={campoNovaTarefa} />
         <Button title="+" onPress={adicionaTarefa} />
       </View>
       <View>
