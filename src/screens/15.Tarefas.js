@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react"
-import { Button, Text, TextInput, View } from "react-native"
+import React, { useRef, useState } from "react";
+import { Button, Text, TextInput, View } from "react-native";
 
 function Tarefa({ descricao }) {
   return (
-    <View style={{flex: 1, flexDirection: 'row'}}>
-      <Text style={{flexGrow: 1}}>{descricao}</Text>
+    <View style={{ flex: 1, flexDirection: 'row' }}>
+      <Text style={{ flexGrow: 1 }}>{descricao}</Text>
       <Button title="Apagar" />
     </View>
   );
@@ -31,8 +31,8 @@ export function TarefasScreen() {
 
   return (
     <View>
-      <View style={{flex: 1, flexDirection: 'row' }}>
-        <TextInput style={{flexGrow: 1}} placeholder="O que fazer..." onChangeText={setNovaTarefa} ref={campoNovaTarefa} />
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <TextInput style={{ flexGrow: 1 }} placeholder="O que fazer..." onChangeText={setNovaTarefa} ref={campoNovaTarefa} />
         <Button title="+" onPress={adicionaTarefa} />
       </View>
       <View>
