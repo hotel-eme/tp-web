@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import axios from "axios";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 function ListaAlunos(props) {
   /**
@@ -20,7 +20,7 @@ function ListaAlunos(props) {
   return (
     <View>
       {alunos && alunos.map(function (aluno) {
-        return <Aluno {...aluno} key={aluno.id} />
+        return <Aluno key={aluno.id} aluno={aluno} navigation={props.navigation} />
       })}
     </View>
   );
@@ -30,10 +30,17 @@ function Aluno(props) {
   /**
    * Componente para exibir cada aluno em uma lista
    */
+  function abreDetalhes() {
+    props.navigation.navigate('Detalhes do Aluno', {...props.aluno});
+  }
+
   return (
     <View style={estilos.lista.aluno}>
-      <Text>{props.nome}</Text>
-      <Text>{props.cpf}</Text>
+      <View style={{flexGrow: 1}}>
+        <Text>{props.aluno.nome}</Text>
+        <Text>{props.aluno.cpf}</Text>
+      </View>
+      <Button title="Ver" onPress={abreDetalhes} />
     </View>
   );
 }
@@ -42,9 +49,14 @@ function DetalhesAluno(props) {
   /**
    * Tela para exibir detalhes de um aluno
    */
+  const aluno = props.route.params;
+
   return (
     <View>
-      <Text>detalhes</Text>
+      <Text>Nome do aluno:</Text>
+      <Text>{aluno.nome}</Text>
+      <Text>CPF do aluno:</Text>
+      <Text>{aluno.cpf}</Text>
     </View>
   );
 }
@@ -93,6 +105,8 @@ const estilos = {
       marginHorizontal: 10,
       marginTop: 10,
       padding: 10,
+      flex: 1,
+      flexDirection: 'row',
     }
   }),
 };
