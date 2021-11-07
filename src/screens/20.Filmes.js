@@ -1,11 +1,8 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import axios from 'axios';
 import React, { useState } from 'react';
-import { Button, Text, View, Image } from 'react-native';
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import axios from "axios";
-import { TextInput } from "react-native-gesture-handler";
-import { StatusBar } from 'expo-status-bar';
-
+import { Button, Image, Text, View } from 'react-native';
 
 function ListaFilmes(props) {
   var [filmes, setFilmes] = useState(null);
@@ -13,7 +10,6 @@ function ListaFilmes(props) {
 
   if (! requisicaoConcluida) {
     axios.get('https://sujeitoprogramador.com/r-api/?api=filmes').then(function (resposta) {
-      console.log(resposta.data);
       setFilmes(resposta.data);
       setRequisicaoConcluida(true);
     });
@@ -39,7 +35,6 @@ function ListaFilmes(props) {
 }
 
 function DetalhesFilme(props) {
-  console.log(props);
   return (
     <View>
       <Text style={{ fontWeight: 'bold' }}>Sinopse:</Text>
