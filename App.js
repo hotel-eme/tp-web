@@ -14,6 +14,7 @@ import { AberturaContaBancariaStack } from "./src/screens/11.AberturaContaBancar
 import { MeuPerfilScreenDrawer } from "./src/screens/12.MeuPerfilDrawer";
 import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
+import { PerfilDevScreen} from "./src/screens/18.PerfilDev";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ function HomeScreen(props) {
       <Button title="Meu Perfil com Drawer" onPress={function () { props.navigation.navigate('Meu Perfil com Drawer') }} />
       <Button title="Meu Perfil com Tab" onPress={function () { props.navigation.navigate('Meu Perfil Tab') }} />
       <Button title="Consultar CEP" onPress={function () { props.navigation.navigate('Consultar CEP') }} />
+      <Button title="Consulta Perfil Dev" onPress={function () { props.navigation.navigate('Perfil Dev') }} />
     </View>
   );
 }
@@ -53,6 +55,7 @@ export default function App() {
         <Stack.Screen name="Meu Perfil com Drawer" component={MeuPerfilScreenDrawer} />
         <Stack.Screen name="Meu Perfil Tab" component={MeuPerfilTab} />
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
+        <Stack.Screen name="Perfil Dev" component={PerfilDevScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
