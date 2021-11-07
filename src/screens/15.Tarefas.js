@@ -31,8 +31,9 @@ export function TarefasScreen() {
             <Tarefa key={tarefa.id} aoRemover={buscaTarefas} {...tarefa} />
           );
         })}
-        {tarefas && !tarefas.length && (
-          <Text>Nenhuma tarefa, oba!</Text>
+        {tarefas && (tarefas.length
+          ? <Text style={estilos.lista.resumo}>{tarefas.length} tarefas.</Text>
+          : <Text style={estilos.lista.resumo}>Nenhuma tarefa, oba!</Text>
         )}
       </View>
     </View>
@@ -104,6 +105,11 @@ function NovaTarefa(props) {
 }
 
 const estilos = {
+  lista: StyleSheet.create({
+    resumo: {
+      margin: 10,
+    },
+  }),
   novaTarefa: StyleSheet.create({
     container: {
       flex: 1,
