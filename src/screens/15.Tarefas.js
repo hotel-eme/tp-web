@@ -32,10 +32,8 @@ export function TarefasScreen() {
       return;  // Aborta função se não há uma nova tarefa preenchida
     }
 
-    // Atualiza coleção de tarefas
-    setTarefas([...tarefas, {
-      descricao: novaTarefa.trim(),
-    }]);
+    // Cria nova tarefa e atualiza em seguida
+    api.post('/', { descricao: novaTarefa }).then(buscaTarefas);
 
     // Limpa campo
     campoNovaTarefa.current.clear();
