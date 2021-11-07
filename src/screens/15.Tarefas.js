@@ -12,21 +12,24 @@ function Tarefa({ descricao }) {
 
 export function TarefasScreen() {
   const [novaTarefa, setNovaTarefa] = useState(null);
+  const [tarefas, setTarefas] = useState([]);
 
-  const tarefas = [
-    "Tarefa 1",
-    "Tarefa 2",
-  ];
+  function adicionaTarefa() {
+    // Atualiza coleção de tarefas
+    setTarefas([...tarefas, {
+      descricao: novaTarefa,
+    }]);
+  }
 
   return (
     <View>
       <View style={{flex: 1, flexDirection: 'row' }}>
         <TextInput style={{flexGrow: 1}} placeholder="O que fazer..." onChangeText={setNovaTarefa} />
-        <Button title="+" />
+        <Button title="+" onPress={adicionaTarefa} />
       </View>
       <View>
         {tarefas.map(function (tarefa, i) {
-          return <Tarefa key={i} descricao={tarefa} />
+          return <Tarefa key={i} descricao={tarefa.descricao} />
         })}
       </View>
     </View>
