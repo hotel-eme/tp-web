@@ -21,6 +21,7 @@ INSTALLED_APPS = [
 
     # Local apps
     'alunos',
+    'tarefas',
 ]
 
 MIDDLEWARE = [
