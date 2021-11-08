@@ -7,14 +7,20 @@ import { ContadorPessoasScreen } from "./src/screens/02.ContadorPessoas";
 import { MultiplicadorDoisNumerosScreen } from "./src/screens/03.MultiplicadorDoisNumeros";
 import { AlcoolGasolinaScreen } from "./src/screens/04.AlcoolGasolina";
 import { CalculoIMCScreen } from "./src/screens/05.CalculoIMC";
+import { JogoNumeroAleatorioScreen } from "./src/screens/06.JogoNumeroAleatorio";
 import { AberturaContaBancariaScreen } from "./src/screens/07.AberturaContaBancaria";
 import { AnuncioParaVendaProdutosScreen } from "./src/screens/08.AnuncioParaVendaProdutos";
 import { VagaEmpregoScreen } from "./src/screens/09.VagaEmprego";
+import { ConversorMoedasScreen } from "./src/screens/10.ConversorMoedas";
 import { AberturaContaBancariaStack } from "./src/screens/11.AberturaContaBancariaStack";
 import { MeuPerfilScreenDrawer } from "./src/screens/12.MeuPerfilDrawer";
 import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
+import { VisualizacaoFraseScreen } from "./src/screens/14.VisualizacaoFrase";
+import { TarefasScreen } from "./src/screens/15.Tarefas";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
 import { PerfilDevScreen} from "./src/screens/18.PerfilDev";
+import { ConversorMoedasApiScreen } from "./src/screens/19.ConversorMoedasApi"
+import { FilmesScreen } from "./src/screens/20.Filmes";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,14 +32,20 @@ function HomeScreen(props) {
       <Button title="Multiplicador de Dois Números" onPress={function () { props.navigation.navigate('Multiplicador de Dois Números') }} />
       <Button title="Abastecer com Álcool ou Gasolina" onPress={function () { props.navigation.navigate('Abastecer com Álcool ou Gasolina') }} />
       <Button title="Cálculo de IMC" onPress={function () { props.navigation.navigate('Cálculo de IMC') }} />
+      <Button title="Jogo do Número Aleatório" onPress={function () { props.navigation.navigate('Jogo do Número Aleatório') }} />
       <Button title="Abertura de Conta Bancária" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária') }} />
       <Button title="Anúncios Para Venda de Produtos" onPress={function () { props.navigation.navigate('Anúncios Para Venda de Produtos') }} />
       <Button title="Vagas de Emprego TI" onPress={function () { props.navigation.navigate('Vagas de Emprego de TI') }} />
+      <Button title="Conversor de Moedas" onPress={function () { props.navigation.navigate('Conversor de Moedas') }} />
       <Button title="Abertura de Conta Bancária (Stack)" onPress={function () { props.navigation.navigate('Abertura de Conta Bancária (Stack)') }} />
       <Button title="Meu Perfil com Drawer" onPress={function () { props.navigation.navigate('Meu Perfil com Drawer') }} />
       <Button title="Meu Perfil com Tab" onPress={function () { props.navigation.navigate('Meu Perfil Tab') }} />
+      <Button title="Visualizar a frase com preferências do usuário" onPress={function () { props.navigation.navigate('Frase')}} />
+      <Button title="Tarefas" onPress={function () { props.navigation.navigate('Tarefas') }} />
       <Button title="Consultar CEP" onPress={function () { props.navigation.navigate('Consultar CEP') }} />
       <Button title="Consulta Perfil Dev" onPress={function () { props.navigation.navigate('Perfil Dev') }} />
+      <Button title="Conversor de Moedas (API)" onPress={function () { props.navigation.navigate("Conversor de Moedas (API)")}} />
+      <Button title="Filmes" onPress={function () { props.navigation.navigate('Filmes') }} />
     </View>
   );
 }
@@ -48,14 +60,20 @@ export default function App() {
         <Stack.Screen name="Multiplicador de Dois Números" component={MultiplicadorDoisNumerosScreen} />
         <Stack.Screen name="Abastecer com Álcool ou Gasolina" component={AlcoolGasolinaScreen} />
         <Stack.Screen name="Cálculo de IMC" component={CalculoIMCScreen} />
+        <Stack.Screen name="Jogo do Número Aleatório" component={JogoNumeroAleatorioScreen} />
         <Stack.Screen name="Abertura de Conta Bancária" component={AberturaContaBancariaScreen} />
         <Stack.Screen name="Anúncios Para Venda de Produtos" component={AnuncioParaVendaProdutosScreen} />
         <Stack.Screen name="Vagas de Emprego de TI" component={VagaEmpregoScreen} />
+        <Stack.Screen name="Conversor de Moedas" component={ConversorMoedasScreen} />
         <Stack.Screen name="Abertura de Conta Bancária (Stack)" component={AberturaContaBancariaStack} />
         <Stack.Screen name="Meu Perfil com Drawer" component={MeuPerfilScreenDrawer} />
         <Stack.Screen name="Meu Perfil Tab" component={MeuPerfilTab} />
+        <Stack.Screen name="Frase" component={VisualizacaoFraseScreen} />
+        <Stack.Screen name="Tarefas" component={TarefasScreen} />
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
         <Stack.Screen name="Perfil Dev" component={PerfilDevScreen} />
+        <Stack.Screen name="Conversor de Moedas (API)" component={ConversorMoedasApiScreen} />
+        <Stack.Screen name="Filmes" component={FilmesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -8,6 +8,11 @@ Orientada a Objetos**. O projeto é feito com:
 - React Native como framework de desenvolvimento mobile.
 - Expo como plataforma facilitadora de implantação de aplicativos.
 
+O projeto também inclui uma pequena aplicação back-end, escrita em Python, para
+servir algumas APIs necessárias para o desenvolvimento do front-end. Para mais
+informações sobre essas APIs, visite [http://localhost:19800/api/](a página de
+documentação) uma vez que seu ambiente local esteja preparado e funcionando.
+
 Siga as nossas [instruções de contribuição](./CONTRIBUTING.md) para participar
 do desenvolvimento do projeto.
 
@@ -50,6 +55,7 @@ isso, basta passar o comando após o `run`:
 
 ```sh
 ./bin/run node  # Executa o Node incluído na imagem Docker do projeto.
+./bin/run-backend python  # Executa o Python também incluído.
 ```
 
 
