@@ -7,8 +7,41 @@ services:
     command: expo start --host 0.0.0.0 --web
     ports:
       - 19006:19006
+    depends_on:
+      - backend
     volumes:
       - ./:/app:rw
       - /app/node_modules
     environment:
       NODE_ENV: development
+
+  # Django back-end
+  backend:
+    build:
+      context: .
+      dockerfile: ./etc/backend.dockerfile
+    command: sh -c './manage.py migrate && ./manage.py runserver 0.0.0.0:8000'
+    ports:
+      - 19800:8000
+    depends_on:
+      database: {condition: service_healthy}
+    healthcheck:
+      test: curl -f http://localhost:8000/api/
+      interval: 1s
+      timeout: 30s
+    volumes:
+      - ./backend:/app:rw
+    environment:
+      SECRET_KEY: not-a-secret
+
+  # Back-end database
+  database:
+    image: postgres:14-alpine
+    volumes:
+      - ./.local/database:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    healthcheck:
+      test: pg_isready -Upostgres
+      interval: 1s
+      timeout: 30s
