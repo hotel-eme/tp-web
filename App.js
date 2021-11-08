@@ -18,6 +18,7 @@ import { MeuPerfilTab } from "./src/screens/13.MeuPerfilTab";
 import { VisualizacaoFraseScreen } from "./src/screens/14.VisualizacaoFrase";
 import { TarefasScreen } from "./src/screens/15.Tarefas";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
+import { PerfilDevScreen} from "./src/screens/18.PerfilDev";
 import { ConversorMoedasApiScreen } from "./src/screens/19.ConversorMoedasApi"
 import { FilmesScreen } from "./src/screens/20.Filmes";
 
@@ -42,6 +43,7 @@ function HomeScreen(props) {
       <Button title="Visualizar a frase com preferências do usuário" onPress={function () { props.navigation.navigate('Frase')}} />
       <Button title="Tarefas" onPress={function () { props.navigation.navigate('Tarefas') }} />
       <Button title="Consultar CEP" onPress={function () { props.navigation.navigate('Consultar CEP') }} />
+      <Button title="Consulta Perfil Dev" onPress={function () { props.navigation.navigate('Perfil Dev') }} />
       <Button title="Conversor de Moedas (API)" onPress={function () { props.navigation.navigate("Conversor de Moedas (API)")}} />
       <Button title="Filmes" onPress={function () { props.navigation.navigate('Filmes') }} />
     </View>
@@ -69,6 +71,7 @@ export default function App() {
         <Stack.Screen name="Frase" component={VisualizacaoFraseScreen} />
         <Stack.Screen name="Tarefas" component={TarefasScreen} />
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
+        <Stack.Screen name="Perfil Dev" component={PerfilDevScreen} />
         <Stack.Screen name="Conversor de Moedas (API)" component={ConversorMoedasApiScreen} />
         <Stack.Screen name="Filmes" component={FilmesScreen} />
       </Stack.Navigator>
