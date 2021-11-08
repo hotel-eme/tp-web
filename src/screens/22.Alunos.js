@@ -25,7 +25,7 @@ function ListaAlunos(props) {
   return (
     <View>
       {alunos && alunos.map(function (aluno) {
-        return <Aluno key={aluno.id} aluno={aluno} navigation={props.navigation} />
+        return <Aluno key={aluno.id} aluno={aluno} navigation={props.navigation} aoRemover={buscaAlunos} />
       })}
       <Button title="Adicionar aluno" onPress={function () {
         props.navigation.navigate('Cadastro de Aluno', { aoAdicionar: buscaAlunos });
@@ -39,7 +39,7 @@ function Aluno(props) {
    * Componente para exibir cada aluno em uma lista
    */
   function abreDetalhes() {
-    props.navigation.navigate('Detalhes do Aluno', {...props.aluno});
+    props.navigation.navigate('Detalhes do Aluno', {aluno: props.aluno, aoRemover: props.aoRemover});
   }
 
   return (
@@ -57,7 +57,15 @@ function DetalhesAluno(props) {
   /**
    * Tela para exibir detalhes de um aluno
    */
-  const aluno = props.route.params;
+  const aluno = props.route.params.aluno;
+
+  function removerAluno() {
+    const requisicao = axios.delete(`http://localhost:19800/api/alunos/${aluno.id}/`);
+    requisicao.then(function () {
+      props.navigation.navigate("Lista de Alunos");
+      props.route.params.aoRemover();
+    });
+  }
 
   return (
     <View>
@@ -65,6 +73,7 @@ function DetalhesAluno(props) {
       <Text>{aluno.nome}</Text>
       <Text>CPF do aluno:</Text>
       <Text>{aluno.cpf}</Text>
+      <Button title="Remover" onPress={removerAluno} />
     </View>
   );
 }
