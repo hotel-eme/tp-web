@@ -25,7 +25,13 @@ function ListaAlunos(props) {
   return (
     <View>
       {alunos && alunos.map(function (aluno) {
-        return <Aluno key={aluno.id} aluno={aluno} navigation={props.navigation} aoRemover={buscaAlunos} />
+        return <Aluno
+          key={aluno.id}
+          aluno={aluno}
+          navigation={props.navigation}
+          aoAlterar={buscaAlunos}
+          aoRemover={buscaAlunos}
+        />
       })}
       <Button title="Adicionar aluno" onPress={function () {
         props.navigation.navigate('Cadastro de Aluno', { aoAdicionar: buscaAlunos });
@@ -39,7 +45,11 @@ function Aluno(props) {
    * Componente para exibir cada aluno em uma lista
    */
   function abreDetalhes() {
-    props.navigation.navigate('Detalhes do Aluno', {aluno: props.aluno, aoRemover: props.aoRemover});
+    props.navigation.navigate('Detalhes do Aluno', {
+      aluno: props.aluno,
+      aoRemover: props.aoRemover,
+      aoAlterar: props.aoAlterar,
+    });
   }
 
   return (
@@ -67,6 +77,13 @@ function DetalhesAluno(props) {
     });
   }
 
+  function vaiParaAlteracaoAluno() {
+    props.navigation.navigate("Alteração de Aluno", {
+      aluno: aluno,
+      aoAlterar: props.route.params.aoAlterar,
+    });
+  }
+
   return (
     <View>
       <Text>Nome do aluno:</Text>
@@ -74,6 +91,7 @@ function DetalhesAluno(props) {
       <Text>CPF do aluno:</Text>
       <Text>{aluno.cpf}</Text>
       <Button title="Remover" onPress={removerAluno} />
+      <Button title="Alterar" onPress={vaiParaAlteracaoAluno} />
     </View>
   );
 }
@@ -82,14 +100,8 @@ function CadastroAluno(props) {
   /**
    * Tela para cadastro de um novo aluno
    */
-  const [nomeInserido, setNomeInserido] = useState(null);
-  const [cpfInserido, setCpfInserido] = useState(null);
-
-  function cadastrarAluno() {
-    const requisicao = axios.post('http://localhost:19800/api/alunos/', {
-      nome: nomeInserido,
-      cpf: cpfInserido,
-    });
+  function cadastrarAluno(dados) {
+    const requisicao = axios.post('http://localhost:19800/api/alunos/', dados);
     requisicao.then(function () {
       props.navigation.navigate('Lista de Alunos');
       props.route.params.aoAdicionar();
@@ -98,11 +110,7 @@ function CadastroAluno(props) {
 
   return (
     <View>
-      <Text>Nome:</Text>
-      <TextInput onChangeText={setNomeInserido} />
-      <Text>CPF:</Text>
-      <TextInput onChangeText={setCpfInserido} />
-      <Button title="Cadastrar" onPress={cadastrarAluno} />
+      <FormularioAluno tituloBotao="Cadastrar" aoSubmeter={cadastrarAluno} />
     </View>
   );
 }
@@ -111,9 +119,44 @@ function AlteracaoAluno(props) {
   /**
    * Tela para alteração de um aluno existente
    */
+  const aluno = props.route.params.aluno;
+
+  function alterarAluno(dados) {
+    const requisicao = axios.put(`http://localhost:19800/api/alunos/${aluno.id}/`, dados);
+    requisicao.then(function () {
+      props.navigation.navigate('Lista de Alunos');
+      props.route.params.aoAlterar();
+    });
+  }
+
   return (
     <View>
-      <Text>alteração</Text>
+      <FormularioAluno tituloBotao="Alterar" aluno={aluno} aoSubmeter={alterarAluno} />
+    </View>
+  );
+}
+
+function FormularioAluno(props) {
+  /**
+   * Formulário para cadastrar ou alterar um aluno
+   */
+  const aluno = props.aluno || {};
+  const [nomeInserido, setNomeInserido] = useState(aluno.nome);
+  const [cpfInserido, setCpfInserido] = useState(aluno.cpf);
+
+  return (
+    <View>
+      <Text>Nome:</Text>
+      <TextInput value={nomeInserido} onChangeText={setNomeInserido} />
+      <Text>CPF:</Text>
+      <TextInput value={cpfInserido} onChangeText={setCpfInserido} />
+      <Button title={props.tituloBotao} onPress={function () {
+        const dadosInseridos = {
+          nome: nomeInserido,
+          cpf: cpfInserido,
+        };
+        props.aoSubmeter(dadosInseridos);
+      }} />
     </View>
   );
 }
