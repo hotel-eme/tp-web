@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import axios from "axios";
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 function ListaAlunos(props) {
   /**
@@ -23,19 +23,23 @@ function ListaAlunos(props) {
   }
 
   return (
-    <View>
-      {alunos && alunos.map(function (aluno) {
-        return <Aluno
-          key={aluno.id}
-          aluno={aluno}
-          navigation={props.navigation}
-          aoAlterar={buscaAlunos}
-          aoRemover={buscaAlunos}
-        />
-      })}
-      <Button title="Adicionar aluno" onPress={function () {
-        props.navigation.navigate('Cadastro de Aluno', { aoAdicionar: buscaAlunos });
-      }} />
+    <View style={estilos.comum.tela}>
+      <ScrollView style={estilos.comum.conteudo}>
+        {alunos && alunos.map(function (aluno) {
+          return <Aluno
+            key={aluno.id}
+            aluno={aluno}
+            navigation={props.navigation}
+            aoAlterar={buscaAlunos}
+            aoRemover={buscaAlunos}
+          />
+        })}
+      </ScrollView>
+      <View style={estilos.comum.opcoes}>
+        <Button style={estilos.comum.opcao} title="Adicionar aluno" onPress={function () {
+          props.navigation.navigate('Cadastro de Aluno', { aoAdicionar: buscaAlunos });
+        }} />
+      </View>
     </View>
   );
 }
@@ -85,13 +89,17 @@ function DetalhesAluno(props) {
   }
 
   return (
-    <View>
-      <Text>Nome do aluno:</Text>
-      <Text>{aluno.nome}</Text>
-      <Text>CPF do aluno:</Text>
-      <Text>{aluno.cpf}</Text>
-      <Button title="Remover" onPress={removerAluno} />
-      <Button title="Alterar" onPress={vaiParaAlteracaoAluno} />
+    <View style={estilos.comum.tela}>
+      <ScrollView style={estilos.comum.conteudo}>
+        <Text>Nome do aluno:</Text>
+        <Text>{aluno.nome}</Text>
+        <Text>CPF do aluno:</Text>
+        <Text>{aluno.cpf}</Text>
+      </ScrollView>
+      <View style={estilos.comum.opcoes}>
+        <Button style={estilos.comum.opcao} title="Alterar" onPress={vaiParaAlteracaoAluno} />
+        <Button style={estilos.comum.opcao} title="Remover" onPress={removerAluno} color="#d65453" />
+      </View>
     </View>
   );
 }
@@ -109,8 +117,10 @@ function CadastroAluno(props) {
   }
 
   return (
-    <View>
-      <FormularioAluno tituloBotao="Cadastrar" aoSubmeter={cadastrarAluno} />
+    <View style={estilos.comum.tela}>
+      <ScrollView style={estilos.comum.conteudo}>
+        <FormularioAluno tituloBotao="Cadastrar" aoSubmeter={cadastrarAluno} />
+      </ScrollView>
     </View>
   );
 }
@@ -130,8 +140,10 @@ function AlteracaoAluno(props) {
   }
 
   return (
-    <View>
-      <FormularioAluno tituloBotao="Alterar" aluno={aluno} aoSubmeter={alterarAluno} />
+    <View style={estilos.comum.tela}>
+      <ScrollView style={estilos.comum.conteudo}>
+        <FormularioAluno tituloBotao="Alterar" aluno={aluno} aoSubmeter={alterarAluno} />
+      </ScrollView>
     </View>
   );
 }
@@ -147,9 +159,9 @@ function FormularioAluno(props) {
   return (
     <View>
       <Text>Nome:</Text>
-      <TextInput value={nomeInserido} onChangeText={setNomeInserido} />
+      <TextInput style={estilos.comum.campo} value={nomeInserido} onChangeText={setNomeInserido} />
       <Text>CPF:</Text>
-      <TextInput value={cpfInserido} onChangeText={setCpfInserido} />
+      <TextInput style={estilos.comum.campo} value={cpfInserido} onChangeText={setCpfInserido} />
       <Button title={props.tituloBotao} onPress={function () {
         const dadosInseridos = {
           nome: nomeInserido,
@@ -177,11 +189,29 @@ export function AlunosScreen() {
 }
 
 const estilos = {
+  comum: StyleSheet.create({
+    tela: {
+      flex: 1,
+    },
+    conteudo: {
+      padding: 10,
+      flexGrow: 1,
+    },
+    opcoes: {
+      padding: 10,
+    },
+    campo: {
+      backgroundColor: 'white',
+      borderBottomColor: 'grey',
+      borderBottomWidth: 1,
+      marginBottom: 10,
+      padding: 5,
+    },
+  }),
   lista: StyleSheet.create({
     aluno: {
       backgroundColor: 'white',
-      marginHorizontal: 10,
-      marginTop: 10,
+      marginBottom: 10,
       padding: 10,
       flex: 1,
       flexDirection: 'row',
