@@ -42,7 +42,7 @@ manualmente.
 ## Como executar a aplicação no ambiente local
 
 ```sh
-./bin/run
+.bin/run
 ```
 
 O script `run`, quando usado sem outros parâmetros, executa o servidor web no
@@ -54,8 +54,8 @@ ou seja, utilizando as ferramentas que configuramos na nossa imagem Docker. Para
 isso, basta passar o comando após o `run`:
 
 ```sh
-./bin/run node  # Executa o Node incluído na imagem Docker do projeto.
-./bin/run-backend python  # Executa o Python também incluído.
+.bin/run node  # Executa o Node incluído na imagem Docker do projeto.
+.bin/run-backend python  # Executa o Python também incluído.
 ```
 
 
