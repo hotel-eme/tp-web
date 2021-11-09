@@ -1,20 +1,36 @@
-# hotel-eme backend
+# Trabalho Prático de desenvolvimento web
 
-Este repositório contém o trabalho prático de front-end mobile, feito em equipe
-para a composição de nota da disciplina **Tópicos Especiais de Programação
-Orientada a Objetos**. O projeto é feito com:
+Este repositório contém o trabalho prático feito em equipe para a composição de
+nota das seguintes disciplinas, ministradas no curso de Análise e
+Desenvolvimento de Sistemas da UNIP:
 
-- JavaScript como linguagem de programação.
-- React Native como framework de desenvolvimento mobile.
-- Expo como plataforma facilitadora de implantação de aplicativos.
-
-O projeto também inclui uma pequena aplicação back-end, escrita em Python, para
-servir algumas APIs necessárias para o desenvolvimento do front-end. Para mais
-informações sobre essas APIs, visite [http://localhost:19800/api/](a página de
-documentação) uma vez que seu ambiente local esteja preparado e funcionando.
+- Tópicos Especiais de Programação Orientada a Objetos
+- Programação Orientada a Objetos II
 
 Siga as nossas [instruções de contribuição](./CONTRIBUTING.md) para participar
 do desenvolvimento do projeto.
+
+
+## Ferramentas e tecnologias
+
+O projeto é feito com:
+
+- JavaScript como linguagem de programação para front-end.
+- Python como linguagem de programação para back-end.
+- React Native como framework de desenvolvimento _mobile_.
+- Expo como plataforma facilitadora de implantação de aplicativos.
+- Django como framework de desenvolvimento back-end MVC.
+- Django REST Framework como framework de desenvolvimento de APIs REST.
+
+
+## Partes do projeto
+
+O projeto inclui três partes principais, localizadas em diretórios distintos,
+sendo cada uma responsável por um aspecto do sistema.
+
+- `backend/`: contém as modelagens de dados e APIs usadas no front-end.
+- `frontend/`: contém a aplicação para front-end web, usada em navegadores.
+- `mobile/`: contém a aplicação para front-end _mobile_, usada em celulares.
 
 
 ## O que é necessário instalar?
@@ -41,21 +57,57 @@ manualmente.
 
 ## Como executar a aplicação no ambiente local
 
+Incluímos um script no diretório `.bin` que auxilia na execução de cada parte do
+projeto. A seguir, conferimos instruções para cada um.
+
+> Se sua intenção é executar todos os serviços simultaneamente, você pode usar o
+> comando `docker-compose up`, ignorando os tópicos a seguir.
+
+### Back-end
+
 ```sh
-.bin/run
+.bin/run-backend
 ```
 
-O script `run`, quando usado sem outros parâmetros, executa o servidor web no
-seu ambiente local através de um container Docker, disponibilizando a aplicação
-em http://localhost:19006.
+O comando acima executa um container com a aplicação de backend, junto ao
+container de banco de dados.
 
-Você também pode executar outros comandos através de um container da aplicação,
-ou seja, utilizando as ferramentas que configuramos na nossa imagem Docker. Para
-isso, basta passar o comando após o `run`:
+Acesse o ambiente em http://localhost:19800.
+
+### Front-end (web)
 
 ```sh
-.bin/run node  # Executa o Node incluído na imagem Docker do projeto.
-.bin/run-backend python  # Executa o Python também incluído.
+.bin/run-frontend
+```
+
+O comando acima executa um container com a aplicação de front-end, junto aos
+containers para o banco de dados e aplicação de back-end, pois são necessários
+para o funcionamento da aplicação.
+
+Acesse o ambiente em http://localhost:19300.
+
+
+### Mobile
+
+```sh
+.bin/run-mobile
+```
+
+O comando acima executa um container com a aplicação de front-end _mobile_,
+junto aos containers para o banco de dados e aplicação de back-end, pois são
+necessários para o funcionamento da aplicação.
+
+Acesse o ambiente em http://localhost:19006.
+
+### Outros comandos
+
+Cada script `run` também pode executar outros comandos através de um container
+do ambiente correspondente, ou seja, utilizando as ferramentas que configuramos
+em cada imagem Docker.
+
+```sh
+.bin/run-mobile npm list  # Lista os pacotes instalados no mobile
+.bin/run-backend python manage.py showmigrations  # Lista migrações do backend
 ```
 
 
