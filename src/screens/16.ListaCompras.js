@@ -39,11 +39,7 @@ export function ListaComprasScreen() {
 }
 
 function ListaCompras(props) {
-  /**
-   * Componente para exibir cada tarefa
-   */
   function removeListaCompras() {
-    // Remove tarefa e executa callback em seguida
     api.delete(`/${props.id}/`).then(props.aoRemover);
   }
 
@@ -56,32 +52,22 @@ function ListaCompras(props) {
 }
 
 function NovaListaCompras(props) {
-  /**
-   * Componente responsável pela criação de tarefas
-   */
   const campoNovaListaCompras = useRef();
   const [novaListaCompras, setNovaListaCompras] = useState(null);
 
   function listaComprasValida() {
-    /**
-     * Valida tarefa preenchida
-     */
-    if (!novaListaCompras) return false;  // Se nulo
-    if (!novaListaCompras.trim().length) return false;  // Se vazio, mesmo com espaços
+    if (!novaListaCompras) return false;
+    if (!novaListaCompras.trim().length) return false;
     return true;
   }
 
   function adicionaListaCompras() {
     if (!listaComprasValida()) {
-      return;  // Aborta função se tarefa não é válida
+      return;
     }
-
-    // Cria nova tarefa e executa callback em seguida
     api.post('/', { descricao: novaListaCompras }).then(props.aoAdicionar);
-
-    // Limpa memória
-    campoNovaListaCompras.current.clear();  // Esvazia campo de texto
-    setNovaListaCompras(null);  // Esvazia tarefa digita anteriormente
+    campoNovaListaCompras.current.clear();
+    setNovaListaCompras(null);
   }
 
   return (
@@ -96,7 +82,7 @@ function NovaListaCompras(props) {
         color="green"
         title="Adicionar"
         onPress={adicionaListaCompras}
-        disabled={!listaComprasValida()}  // Desativa botão quando o campo está vazio
+        disabled={!listaComprasValida()}
       />
     </View>
   );
