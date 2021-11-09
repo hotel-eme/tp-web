@@ -18,7 +18,7 @@ export function AlcoolGasolinaScreen() {
 
   return (
     <View>
-      <Image style={{ width: 200, height: 150 }} source={require('../imagens/posto.png')} />
+      <Image style={{ width: 200, height: 150 }} source={require('../assets/images/posto.png')} />
       <TextInput placeholder="Preço do Álcool:" onChangeText={setAlcool} />
       <TextInput placeholder="Preço da Gasolina:" onChangeText={setGasolina} />
       <Button title="Calcular" onPress={calcula} />
