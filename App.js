@@ -21,6 +21,7 @@ import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
 import { PerfilDevScreen} from "./src/screens/18.PerfilDev";
 import { ConversorMoedasApiScreen } from "./src/screens/19.ConversorMoedasApi"
 import { FilmesScreen } from "./src/screens/20.Filmes";
+import { AlunosScreen } from "./src/screens/22.Alunos";
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,7 @@ function HomeScreen(props) {
       <Button title="Consulta Perfil Dev" onPress={function () { props.navigation.navigate('Perfil Dev') }} />
       <Button title="Conversor de Moedas (API)" onPress={function () { props.navigation.navigate("Conversor de Moedas (API)")}} />
       <Button title="Filmes" onPress={function () { props.navigation.navigate('Filmes') }} />
+      <Button title="Alunos (API)" onPress={function () { props.navigation.navigate("Alunos (API)")}} />
     </View>
   );
 }
@@ -74,6 +76,7 @@ export default function App() {
         <Stack.Screen name="Perfil Dev" component={PerfilDevScreen} />
         <Stack.Screen name="Conversor de Moedas (API)" component={ConversorMoedasApiScreen} />
         <Stack.Screen name="Filmes" component={FilmesScreen} />
+        <Stack.Screen name="Alunos (API)" component={AlunosScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
