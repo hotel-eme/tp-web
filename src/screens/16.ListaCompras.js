@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 const api = axios.create({
-  baseURL: 'http://localhost:19800/api/lista_compras/',
+  baseURL: 'http://localhost:19800/api/itens-de-compra/',
   headers: { 'Accept': 'application/json' },
 });
 
@@ -22,15 +22,15 @@ export function ListaComprasScreen() {
 
   return (
     <View>
-      <NovaListaCompras aoAdicionar={buscaListaCompras} />
+      <NovoItem aoAdicionar={buscaListaCompras} />
       <View>
-        {listaCompras && listaCompras.map(function (listaCompras) {
+        {listaCompras && listaCompras.map(function (item) {
           return (
-            <ListaCompras key={listaCompras.id} aoRemover={buscaListaCompras} {...listaCompras} />
+            <ItemCompra key={item.id} aoRemover={buscaListaCompras} {...item}/>
           );
         })}
         {listaCompras && (listaCompras.length
-          ? <Text style={estilos.lista.resumo}>{listaCompras.length} Lista.</Text>
+          ? <Text style={estilos.lista.resumo}>{listaCompras.length} itens</Text>
           : <Text style={estilos.lista.resumo}>Nenhuma compra adicionada!</Text>
         )}
       </View>
@@ -38,7 +38,7 @@ export function ListaComprasScreen() {
   );
 }
 
-function ListaCompras(props) {
+function ItemCompra(props) {
   /**
    * Componente para exibir cada tarefa
    */
@@ -48,55 +48,71 @@ function ListaCompras(props) {
   }
 
   return (
-    <View style={estilos.listaCompras.container}>
-      <Text style={estilos.listaCompras.texto}>{props.descricao}</Text>
+    <View style={estilos.compras.container}>
+      <Text style={estilos.compras.texto}>{props.nome_produto}</Text>
+      <Text style={estilos.compras.texto}>{props.quantidade}</Text>
       <Button title="🗑" color="#d65453" onPress={removeListaCompras} />
     </View>
   );
 }
 
-function NovaListaCompras(props) {
+function NovoItem(props) {
   /**
    * Componente responsável pela criação de tarefas
    */
-  const campoNovaListaCompras = useRef();
-  const [novaListaCompras, setNovaListaCompras] = useState(null);
+  const campoNomeProduto= useRef();
+  const campoQuantidade= useRef();
+  const [nomeProduto, setNomeProduto] = useState(null);
+  const [quantidade, setQuantidade] = useState(null);
 
-  function listaComprasValida() {
+  function itemValido() {
     /**
      * Valida tarefa preenchida
      */
-    if (!novaListaCompras) return false;  // Se nulo
-    if (!novaListaCompras.trim().length) return false;  // Se vazio, mesmo com espaços
+    if (!nomeProduto) return false;  // Se nulo
+    if (!nomeProduto.trim().length) return false;  // Se vazio, mesmo com espaços
+    if (!quantidade) return false;
+    if (!quantidade.trim().length) return false;
     return true;
   }
 
-  function adicionaListaCompras() {
-    if (!listaComprasValida()) {
+  function adicionaItem() {
+    if (!itemValido()) {
       return;  // Aborta função se tarefa não é válida
     }
 
     // Cria nova tarefa e executa callback em seguida
-    api.post('/', { descricao: novaListaCompras }).then(props.aoAdicionar);
+    api.post('/', {
+      nome_produto: nomeProduto,
+      quantidade: quantidade,
+    }).then(props.aoAdicionar);
 
     // Limpa memória
-    campoNovaListaCompras.current.clear();  // Esvazia campo de texto
-    setNovaListaCompras(null);  // Esvazia tarefa digita anteriormente
+    campoNomeProduto.current.clear();  // Esvazia campo de texto
+    setNomeProduto(null);  // Esvazia tarefa digita anteriormente
+    campoQuantidade.current.clear();  // Esvazia campo de texto
+    setQuantidade(null);
   }
 
   return (
-    <View style={estilos.novaListaCompras.container}>
+    <View style={estilos.item.container}>
       <TextInput
-        ref={campoNovaListaCompras}
-        style={estilos.novaListaCompras.campo}
-        placeholder="O que Comprar..."
-        onChangeText={setNovaListaCompras}
+        ref={campoNomeProduto}
+        style={[estilos.item.campo, {width:120}]}
+        placeholder="Nome do produto"
+        onChangeText={setNomeProduto}
+      />
+      <TextInput
+        ref={campoQuantidade}
+        style={[estilos.item.campo, {width:50}]}
+        placeholder="Quantidade"
+        onChangeText={setQuantidade}
       />
       <Button
         color="green"
         title="Adicionar"
-        onPress={adicionaListaCompras}
-        disabled={!listaComprasValida()}  // Desativa botão quando o campo está vazio
+        onPress={adicionaItem}
+        disabled={!itemValido()}  // Desativa botão quando o campo está vazio
       />
     </View>
   );
@@ -108,7 +124,7 @@ const estilos = {
       margin: 10,
     },
   }),
-  novaListaCompras: StyleSheet.create({
+  item: StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'row',
@@ -120,7 +136,7 @@ const estilos = {
       flexGrow: 1,
     },
   }),
-  listaCompras: StyleSheet.create({
+  compras: StyleSheet.create({
     container: {
       alignItems: 'center',
       backgroundColor: 'white',
