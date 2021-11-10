@@ -20,6 +20,7 @@ import { TarefasScreen } from "./src/screens/15.Tarefas";
 import { MeuCepScreen } from "./src/screens/17.ConsultaCep";
 import { PerfilDevScreen} from "./src/screens/18.PerfilDev";
 import { ConversorMoedasApiScreen } from "./src/screens/19.ConversorMoedasApi"
+import { ListaComprasScreen} from "./src/screens/16.ListaCompras"
 import { FilmesScreen } from "./src/screens/20.Filmes";
 import { AlunosScreen } from "./src/screens/22.Alunos";
 
@@ -46,6 +47,7 @@ function HomeScreen(props) {
       <Button title="Consultar CEP" onPress={function () { props.navigation.navigate('Consultar CEP') }} />
       <Button title="Consulta Perfil Dev" onPress={function () { props.navigation.navigate('Perfil Dev') }} />
       <Button title="Conversor de Moedas (API)" onPress={function () { props.navigation.navigate("Conversor de Moedas (API)")}} />
+      <Button title="Lista de Compras" onPress={function () { props.navigation.navigate("Lista de Compras")}} />
       <Button title="Filmes" onPress={function () { props.navigation.navigate('Filmes') }} />
       <Button title="Alunos (API)" onPress={function () { props.navigation.navigate("Alunos (API)")}} />
     </View>
@@ -75,6 +77,7 @@ export default function App() {
         <Stack.Screen name="Consultar CEP" component={MeuCepScreen} />
         <Stack.Screen name="Perfil Dev" component={PerfilDevScreen} />
         <Stack.Screen name="Conversor de Moedas (API)" component={ConversorMoedasApiScreen} />
+        <Stack.Screen name="Lista de Compras" component={ListaComprasScreen} />
         <Stack.Screen name="Filmes" component={FilmesScreen} />
         <Stack.Screen name="Alunos (API)" component={AlunosScreen} />
       </Stack.Navigator>
