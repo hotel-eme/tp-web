@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .. import models
 
 
-class TarefaSerializer(serializers.HyperlinkedModelSerializer):
+class TarefaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Tarefa
-        fields = ['url', 'id', 'descricao']
+        fields = '__all__'
