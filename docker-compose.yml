@@ -3,14 +3,30 @@ services:
 
   # React Native (Expo) application
   mobile:
-    build: .
+    build:
+      context: ./mobile
     command: expo start --host 0.0.0.0 --web
     ports:
       - 19006:19006
     depends_on:
       - backend
     volumes:
-      - ./:/app:rw
+      - ./mobile:/app:rw
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+
+  # React Native (Expo) application
+  frontend:
+    build:
+      context: ./frontend
+    command: npm start
+    ports:
+      - 19300:3000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app:rw
       - /app/node_modules
     environment:
       NODE_ENV: development
@@ -18,8 +34,7 @@ services:
   # Django back-end
   backend:
     build:
-      context: .
-      dockerfile: ./etc/backend.dockerfile
+      context: ./backend
     command: sh -c './manage.py migrate && ./manage.py runserver 0.0.0.0:8000'
     ports:
       - 19800:8000

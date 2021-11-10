@@ -33,7 +33,7 @@ export function CalculoIMCScreen() {
 
   return (
     <View>
-      <Image style={{ width: 200, height: 200 }} source={require('../imagens/IMC.png')} />
+      <Image style={{ width: 200, height: 200 }} source={require('../assets/images/IMC.png')} />
       <TextInput placeholder="Digite sua altura, em m:" onChangeText={setAltura} />
       <TextInput placeholder="Digite o seu peso, em kg:" onChangeText={setPeso} />
       <Button title="Verificar" onPress={verifica} />

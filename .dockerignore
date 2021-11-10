@@ -1,4 +1,4 @@
 *
-!etc/
-!package.json
-!package-lock.json
+!backend/
+!frontend/
+!mobile/
