@@ -16,6 +16,21 @@ services:
     environment:
       NODE_ENV: development
 
+  # React Native (Expo) application
+  frontend:
+    build:
+      context: ./frontend
+    command: npm start
+    ports:
+      - 19300:3000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app:rw
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+
   # Django back-end
   backend:
     build:
