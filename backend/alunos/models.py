@@ -1,3 +1,4 @@
+from django.core import validators
 from django.db import models
 
 
@@ -18,8 +19,11 @@ class Aluno(models.Model):
     registro_aluno = models.CharField(
         max_length=10,
         verbose_name='registro de aluno',
-        help_text='O número de registro interno do aluno.',
+        help_text='O número de registro interno do aluno, e.g. X00000-0.',
         null=True, blank=True,  # Campo adicionado na após 1.0.0
+        validators=[
+            validators.RegexValidator(r'[A-Z][0-9]{5}-[0-9]'),
+        ],
     )
 
     data_nascimento = models.DateField(
