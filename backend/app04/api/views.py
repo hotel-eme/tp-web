@@ -28,3 +28,15 @@ class FormacaoAPI(views.APIView):
             'escola': 'UME Samuel Augusto Leão de Moura ',
             'ano_conclusao': '2019',
         })
+
+
+class ProjetosAPI(views.APIView):
+
+    def get(self, request):
+        return response.Response({
+            'projetos': [
+                'Desenvolver API para GET',
+                'Aprender fisica',
+            ],
+            'meta_futuro': 'Estudar na UNIP',
+        })

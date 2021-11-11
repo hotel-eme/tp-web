@@ -10,4 +10,5 @@ urlpatterns = [
     *router.urls,
     path('dadospessoais/', api.views.DadosPessoaisAPI.as_view()),
     path('formacao/', api.views.FormacaoAPI.as_view()),
+    path('projetos/', api.views.ProjetosAPI.as_view()),
 ]
