@@ -7,9 +7,10 @@ export default function Container(props) {
    */
   return (
     <main id="container">
+      {(window.location.pathname != '/') &&
       <header id="back">
         <Link to="/">Voltar para a Home</Link>
-      </header>
+      </header>}
       <section id="conteudo_tela">
         {props.children}
       </section>
