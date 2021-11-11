@@ -40,3 +40,11 @@ class ProjetosAPI(views.APIView):
             ],
             'meta_futuro': 'Estudar na UNIP',
         })
+
+
+class ExperienciaAPI(views.APIView):
+
+    def get(self, request):
+        return response.Response({
+            'experiencia': 'Ajudante da professora',
+        })

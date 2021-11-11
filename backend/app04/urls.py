@@ -11,4 +11,5 @@ urlpatterns = [
     path('dadospessoais/', api.views.DadosPessoaisAPI.as_view()),
     path('formacao/', api.views.FormacaoAPI.as_view()),
     path('projetos/', api.views.ProjetosAPI.as_view()),
+    path('experiencia/', api.views.ExperienciaAPI.as_view()),
 ]
