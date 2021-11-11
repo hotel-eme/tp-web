@@ -9,4 +9,5 @@ router.register('clientes', api.views.ClienteViewSet, basename='cliente')
 urlpatterns = [
     *router.urls,
     path('dadospessoais/', api.views.DadosPessoaisAPI.as_view()),
+    path('formacao/', api.views.FormacaoAPI.as_view()),
 ]

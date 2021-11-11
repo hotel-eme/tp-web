@@ -18,3 +18,13 @@ class DadosPessoaisAPI(views.APIView):
             'email': 'zezinho@example.com',
             'profissao': 'Estudante',
         })
+
+
+class FormacaoAPI(views.APIView):
+
+    def get(self, request):
+        return response.Response({
+            'formacao': 'Educação infantil',
+            'escola': 'UME Samuel Augusto Leão de Moura ',
+            'ano_conclusao': '2019',
+        })
