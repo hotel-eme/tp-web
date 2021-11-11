@@ -48,3 +48,13 @@ class ExperienciaAPI(views.APIView):
         return response.Response({
             'experiencia': 'Ajudante da professora',
         })
+
+
+class LazerAPI(views.APIView):
+
+    def get(self, request):
+        return response.Response({
+            'em_casa': 'Jogar FORTNITE',
+            'na_rua': 'Brincar de pega-pega',
+            'na_escola': 'Jogar xadrez no recreio',
+        })
