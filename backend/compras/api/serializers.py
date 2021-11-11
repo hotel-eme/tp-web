@@ -6,4 +6,4 @@ from .. import models
 class ItemListaCompraSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ItemListaCompra
-        fields = ['id', 'nome_produto', 'quantidade']
+        fields = '__all__'
