@@ -141,17 +141,15 @@ function FormularioAluno(props) {
   }
 
   return (
-    <Container>
-      <form onSubmit={submeteFormulario}>
-        <CampoTexto nomeExibicao="Nome" nomeApi="nome" onChange={function (event) { setNome(event.target.value) }} />
-        <CampoTexto nomeExibicao="CPF" nomeApi="cpf" onChange={function (event) { setCpf(event.target.value) }} />
-        <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" onChange={function (event) { setRegistroAluno(event.target.value) }} />
-        <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" onChange={function (event) { setDataNascimento(event.target.value) }} />
-        <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" onChange={function (event) { setEndereco(event.target.value) }} />
-        <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" onChange={function (event) { setMatriculado(event.target.value) }} />
-        <button type="submit">Cadastrar</button>
-      </form>
-    </Container>
+    <form onSubmit={submeteFormulario}>
+      <CampoTexto nomeExibicao="Nome" nomeApi="nome" onChange={function (event) { setNome(event.target.value) }} />
+      <CampoTexto nomeExibicao="CPF" nomeApi="cpf" onChange={function (event) { setCpf(event.target.value) }} />
+      <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" onChange={function (event) { setRegistroAluno(event.target.value) }} />
+      <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" onChange={function (event) { setDataNascimento(event.target.value) }} />
+      <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" onChange={function (event) { setEndereco(event.target.value) }} />
+      <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" onChange={function (event) { setMatriculado(event.target.value) }} />
+      <button type="submit">Cadastrar</button>
+    </form>
   );
 }
 
