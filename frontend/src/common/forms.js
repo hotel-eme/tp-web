@@ -13,7 +13,7 @@ export function CampoCheckbox(props) {
   return (
     <p>
       <label>
-        <input type="checkbox" name={props.nomeApi} onChange={props.onChange} />
+        <input type="checkbox" defaultChecked={props.valorInicial} name={props.nomeApi} onChange={props.onChange} />
         <strong>{props.nomeExibicao}</strong>
       </label>
     </p>

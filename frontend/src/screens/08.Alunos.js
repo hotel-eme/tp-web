@@ -126,7 +126,7 @@ function AlteracaoAluno(props) {
   return (
     <Container title="Alteração de Aluno">
       <Link to="..">Cancelar</Link>
-      <FormularioAluno dadosIniciais={aluno} aoSubmeter={alteraAluno} textoBotao="Alterar" />
+      {aluno && <FormularioAluno dadosIniciais={aluno} aoSubmeter={alteraAluno} textoBotao="Alterar" />}
     </Container>
   );
 }
@@ -135,7 +135,7 @@ function FormularioAluno(props) {
   /**
    * Formulário para cadastrar ou alterar um aluno
    */
-  const dadosIniciais = props.dadosIniciais || {};
+  const dadosIniciais = props.dadosIniciais;
   const [nome, setNome] = useState(dadosIniciais.nome);
   const [cpf, setCpf] = useState(dadosIniciais.cpf);
   const [registroAluno, setRegistroAluno] = useState(dadosIniciais.registro_aluno);
@@ -149,12 +149,12 @@ function FormularioAluno(props) {
     event.preventDefault();
 
     props.aoSubmeter({
-      nome: nome || dadosIniciais.nome,
-      cpf: cpf || dadosIniciais.cpf,
-      registro_aluno: registroAluno || dadosIniciais.registro_aluno,
-      data_nascimento: dataNascimento || dadosIniciais.data_nascimento,
-      endereco: endereco || dadosIniciais.endereco,
-      matriculado: matriculado || dadosIniciais.matriculado,
+      nome: nome,
+      cpf: cpf,
+      registro_aluno: registroAluno,
+      data_nascimento: dataNascimento,
+      endereco: endereco,
+      matriculado: matriculado,
     });
   }
 
@@ -165,7 +165,7 @@ function FormularioAluno(props) {
       <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" valorInicial={dadosIniciais.registro_aluno} onChange={function (event) { setRegistroAluno(event.target.value) }} />
       <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" valorInicial={dadosIniciais.data_nascimento} onChange={function (event) { setDataNascimento(event.target.value) }} />
       <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" valorInicial={dadosIniciais.endereco} onChange={function (event) { setEndereco(event.target.value) }} />
-      <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" valorInicial={dadosIniciais.matriculado} onChange={function (event) { setMatriculado(event.target.value) }} />
+      <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" valorInicial={dadosIniciais.matriculado} onChange={function (event) { setMatriculado(event.target.checked) }} />
       <button type="submit">{props.textoBotao}</button>
     </form>
   );
