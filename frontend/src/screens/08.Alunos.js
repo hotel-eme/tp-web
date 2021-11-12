@@ -60,6 +60,12 @@ function DetalhesAluno(props) {
 
   !aluno && buscaAluno();
 
+  function apagaAluno() {
+    apiAlunos.delete(`/${params.id}/`).then(function () {
+      window.location.href = `${window.location.path}/..`;
+    });
+  }
+
   return (
     <Container title="Detalhes de Aluno">
       <Link to="..">Voltar para lista de alunos</Link>
@@ -71,6 +77,7 @@ function DetalhesAluno(props) {
         <dt>Endereço</dt><dd>{aluno.endereco}</dd>
         <dt>Matriculado</dt><dd>{aluno.matriculado ? "Sim" : "Não"}</dd>
       </dl>}
+      <button onClick={apagaAluno}>Apagar aluno</button>
     </Container>
   );
 }
