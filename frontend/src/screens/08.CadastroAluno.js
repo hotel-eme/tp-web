@@ -1,7 +1,11 @@
+import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import Container from "../common/Container";
 
-
+const apiAlunos = axios.create({
+  baseURL: 'http://localhost:19800/api/alunos/',
+  headers: { 'Accept': 'application/json' },
+});
 
 function ListaAlunos(props) {
   /**
