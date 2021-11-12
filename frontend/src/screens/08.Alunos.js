@@ -59,9 +59,15 @@ function CadastroAluno(props) {
   /**
    * Tela para cadastro de um novo aluno
    */
+  function cadastraAluno(dadosFormulario) {
+    apiAlunos.post('/', dadosFormulario).then(function () {
+      window.location.href = `${window.location.path}/..`;
+    });
+  }
+
   return (
     <Container title="Cadastro de Aluno">
-      <FormularioAluno />
+      <FormularioAluno aoSubmeter={cadastraAluno} />
     </Container>
   );
 }
@@ -81,16 +87,41 @@ function FormularioAluno(props) {
   /**
    * Formulário para cadastrar ou alterar um aluno
    */
+  const [nome, setNome] = useState(null);
+  const [cpf, setCpf] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [registroAluno, setRegistroAluno] = useState(null);
+  const [dataNascimento, setDataNascimento] = useState(null);
+  const [endereco, setEndereco] = useState(null);
+  const [matriculado, setMatriculado] = useState(false);
+
+  function submeteFormulario(event) {
+    // Inibe comportamento do navegador de enviar o formulário, pois nós
+    // queremos obter os dados e enviá-los via API
+    event.preventDefault();
+
+    props.aoSubmeter({
+      nome: nome,
+      cpf: cpf,
+      email: email,
+      registro_aluno: registroAluno,
+      data_nascimento: dataNascimento,
+      endereco: endereco,
+      matriculado: matriculado,
+    });
+  }
+
   return (
     <Container>
-      <form>
-        <CampoTexto nomeExibicao="Nome" nomeApi="nome" />
-        <CampoTexto nomeExibicao="CPF" nomeApi="cpf" />
-        <CampoTexto nomeExibicao="Email" nomeApi="email" />
-        <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" />
-        <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" />
-        <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" />
-        <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" />
+      <form onSubmit={submeteFormulario}>
+        <CampoTexto nomeExibicao="Nome" nomeApi="nome" onChange={function (event) { setNome(event.target.value) }} />
+        <CampoTexto nomeExibicao="CPF" nomeApi="cpf" onChange={function (event) { setCpf(event.target.value) }} />
+        <CampoTexto nomeExibicao="Email" nomeApi="email" onChange={function (event) { setEmail(event.target.value) }} />
+        <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" onChange={function (event) { setRegistroAluno(event.target.value) }} />
+        <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" onChange={function (event) { setDataNascimento(event.target.value) }} />
+        <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" onChange={function (event) { setEndereco(event.target.value) }} />
+        <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" onChange={function (event) { setMatriculado(event.target.value) }} />
+        <button type="submit">Cadastrar</button>
       </form>
     </Container>
   );
