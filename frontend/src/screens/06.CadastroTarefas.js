@@ -22,10 +22,23 @@ export default function TarefasScreen() {
     <Container title="Tarefas">
         {tarefas && tarefas.map(function (tarefa) {
           return (
-           <p>{tarefa.descricao}</p>
+           <Tarefa id={tarefa.id} descricao={tarefa.descricao}></Tarefa>
           );
         })}
         {tarefas && (tarefas.length)}
     </Container>
+  );
+}
+
+function Tarefa(props) {
+  function removeTarefa() {
+    api.delete(`/${props.id}/`).then(window.location.reload());
+  }
+
+  return (
+    <article>
+      <p>{props.descricao}</p>
+      <button onClick={removeTarefa}>Remover Tarefa</button>
+    </article>
   );
 }
