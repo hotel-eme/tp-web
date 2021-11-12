@@ -65,7 +65,6 @@ function DetalhesAluno(props) {
       {aluno && <dl>
         <dt>Nome</dt><dd>{aluno.nome}</dd>
         <dt>CPF</dt><dd>{aluno.cpf}</dd>
-        <dt>Endereço de email</dt><dd>{aluno.email}</dd>
         <dt>Registro de Aluno (RA)</dt><dd>{aluno.registro_aluno}</dd>
         <dt>Data de nascimento</dt><dd>{aluno.data_nascimento}</dd>
         <dt>Endereço</dt><dd>{aluno.endereco}</dd>
@@ -109,7 +108,6 @@ function FormularioAluno(props) {
    */
   const [nome, setNome] = useState(null);
   const [cpf, setCpf] = useState(null);
-  const [email, setEmail] = useState(null);
   const [registroAluno, setRegistroAluno] = useState(null);
   const [dataNascimento, setDataNascimento] = useState(null);
   const [endereco, setEndereco] = useState(null);
@@ -123,7 +121,6 @@ function FormularioAluno(props) {
     props.aoSubmeter({
       nome: nome,
       cpf: cpf,
-      email: email,
       registro_aluno: registroAluno,
       data_nascimento: dataNascimento,
       endereco: endereco,
@@ -136,7 +133,6 @@ function FormularioAluno(props) {
       <form onSubmit={submeteFormulario}>
         <CampoTexto nomeExibicao="Nome" nomeApi="nome" onChange={function (event) { setNome(event.target.value) }} />
         <CampoTexto nomeExibicao="CPF" nomeApi="cpf" onChange={function (event) { setCpf(event.target.value) }} />
-        <CampoTexto nomeExibicao="Email" nomeApi="email" onChange={function (event) { setEmail(event.target.value) }} />
         <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" onChange={function (event) { setRegistroAluno(event.target.value) }} />
         <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" onChange={function (event) { setDataNascimento(event.target.value) }} />
         <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" onChange={function (event) { setEndereco(event.target.value) }} />
