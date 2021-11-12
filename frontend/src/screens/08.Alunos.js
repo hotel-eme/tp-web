@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useParams } from 'react-router-dom';
 import Container from "../common/Container";
 import { CampoCheckbox, CampoTexto } from '../common/forms';
 
@@ -40,6 +40,7 @@ function Aluno(props) {
   return (
     <article>
       <p>{props.nome}</p>
+      <Link to={`${props.id}`}>Ver aluno</Link>
     </article>
   );
 }
@@ -48,9 +49,28 @@ function DetalhesAluno(props) {
   /**
    * Tela para exibir detalhes de um aluno
    */
+  let params = useParams();
+  const [aluno, setAluno] = useState(null);
+
+  function buscaAluno() {
+    apiAlunos.get(`/${params.id}/`).then(function (resposta) {
+      setAluno(resposta.data);
+    });
+  }
+
+  !aluno && buscaAluno();
+
   return (
     <Container title="Detalhes de Aluno">
-      detalhe de alunos
+      {aluno && <dl>
+        <dt>Nome</dt><dd>{aluno.nome}</dd>
+        <dt>CPF</dt><dd>{aluno.cpf}</dd>
+        <dt>Endereço de email</dt><dd>{aluno.email}</dd>
+        <dt>Registro de Aluno (RA)</dt><dd>{aluno.registro_aluno}</dd>
+        <dt>Data de nascimento</dt><dd>{aluno.data_nascimento}</dd>
+        <dt>Endereço</dt><dd>{aluno.endereco}</dd>
+        <dt>Matriculado</dt><dd>{aluno.matriculado ? "Sim" : "Não"}</dd>
+      </dl>}
     </Container>
   );
 }
