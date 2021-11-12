@@ -1,5 +1,4 @@
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Container from "../common/Container";
 
 
@@ -71,15 +70,12 @@ function FormularioAluno(props) {
 }
 
 export default function AlunosScreen() {
-  return ReactDOM.render(
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ListaAlunos />} />
-        <Route path="/:id" element={<DetalhesAluno />} />
-        <Route path="/cadastro" element={<CadastroAluno />} />
-        <Route path="/:id/alteracao" elesment={<AlteracaoAluno />} />
-      </Routes>
-    </BrowserRouter>,
-    document.getElementById('root')
+  return (
+    <Routes>
+      <Route path="/" element={<ListaAlunos />} />
+      <Route path="/:id" element={<DetalhesAluno />} />
+      <Route path="/cadastro" element={<CadastroAluno />} />
+      <Route path="/:id/alteracao" elesment={<AlteracaoAluno />} />
+    </Routes>
   );
 }

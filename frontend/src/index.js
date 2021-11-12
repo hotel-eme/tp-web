@@ -23,7 +23,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/01-meu-perfil" element={<MeuPerfilScreen />} />
-      <Route path="/08-cadastro-aluno" element={<AlunosScreen />} />
+      <Route path="/08-cadastro-aluno/*" element={<AlunosScreen />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
