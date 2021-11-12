@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import Container from "../common/Container";
 
 const apiAlunos = axios.create({
@@ -27,6 +27,7 @@ function ListaAlunos(props) {
       {alunos && alunos.map(function (aluno) {
         return <Aluno {...aluno} />
       })}
+      <Link to="cadastro">Adicionar aluno</Link>
     </Container>
   );
 }
