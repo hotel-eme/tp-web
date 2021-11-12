@@ -3,7 +3,14 @@ export function CampoTexto(props) {
     <p>
       <label>
         <strong>{props.nomeExibicao}:</strong>
-        <input type="text" name={props.nomeApi} defaultValue={props.valorInicial} onChange={props.onChange} />
+        <input
+          type="text"
+          name={props.nomeApi}
+          defaultValue={props.valorInicial}
+          onChange={function (event) {
+            props.funcaoSet(event.target.value);
+          }}
+        />
       </label>
     </p>
   );
@@ -13,7 +20,14 @@ export function CampoCheckbox(props) {
   return (
     <p>
       <label>
-        <input type="checkbox" defaultChecked={props.valorInicial} name={props.nomeApi} onChange={props.onChange} />
+        <input
+          type="checkbox"
+          name={props.nomeApi}
+          defaultChecked={props.valorInicial}
+          onChange={function (event) {
+            props.funcaoSet(event.target.checked);
+          }}
+        />
         <strong>{props.nomeExibicao}</strong>
       </label>
     </p>

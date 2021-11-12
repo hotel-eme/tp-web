@@ -160,12 +160,12 @@ function FormularioAluno(props) {
 
   return (
     <form onSubmit={submeteFormulario}>
-      <CampoTexto nomeExibicao="Nome" nomeApi="nome" valorInicial={dadosIniciais.nome} onChange={function (event) { setNome(event.target.value) }} />
-      <CampoTexto nomeExibicao="CPF" nomeApi="cpf" valorInicial={dadosIniciais.cpf} onChange={function (event) { setCpf(event.target.value) }} />
-      <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" valorInicial={dadosIniciais.registro_aluno} onChange={function (event) { setRegistroAluno(event.target.value) }} />
-      <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" valorInicial={dadosIniciais.data_nascimento} onChange={function (event) { setDataNascimento(event.target.value) }} />
-      <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" valorInicial={dadosIniciais.endereco} onChange={function (event) { setEndereco(event.target.value) }} />
-      <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" valorInicial={dadosIniciais.matriculado} onChange={function (event) { setMatriculado(event.target.checked) }} />
+      <CampoTexto nomeExibicao="Nome" nomeApi="nome" valorInicial={dadosIniciais.nome} funcaoSet={setNome} />
+      <CampoTexto nomeExibicao="CPF" nomeApi="cpf" valorInicial={dadosIniciais.cpf} funcaoSet={setCpf} />
+      <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" valorInicial={dadosIniciais.registro_aluno} funcaoSet={setRegistroAluno} />
+      <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" valorInicial={dadosIniciais.data_nascimento} funcaoSet={setDataNascimento} />
+      <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" valorInicial={dadosIniciais.endereco} funcaoSet={setEndereco} />
+      <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" valorInicial={dadosIniciais.matriculado} funcaoSet={setMatriculado} />
       <button type="submit">{props.textoBotao}</button>
     </form>
   );
