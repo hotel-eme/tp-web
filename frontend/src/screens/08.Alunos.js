@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import Container from "../common/Container";
+import { CampoTexto } from '../common/forms';
 
 const apiAlunos = axios.create({
   baseURL: 'http://localhost:19800/api/alunos/',
@@ -80,27 +81,16 @@ function FormularioAluno(props) {
   /**
    * Formulário para cadastrar ou alterar um aluno
    */
-  function Campo(props) {
-    return (
-      <p>
-        <label>
-          <strong>{props.nomeExibicao}:</strong>
-          <input type="text" name={props.nomeApi} />
-        </label>
-      </p>
-    );
-  }
-
   return (
     <Container>
       <form>
-        <Campo nomeExibicao="Nome" nomeApi="nome" />
-        <Campo nomeExibicao="CPF" nomeApi="cpf" />
-        <Campo nomeExibicao="Email" nomeApi="email" />
-        <Campo nomeExibicao="RA" nomeApi="registro_aluno" />
-        <Campo nomeExibicao="Data de nascimento" nomeApi="data_nascimento" />
-        <Campo nomeExibicao="Endereço" nomeApi="endereco" />
-        <Campo nomeExibicao="Matriculado" nomeApi="matriculado" />
+        <CampoTexto nomeExibicao="Nome" nomeApi="nome" />
+        <CampoTexto nomeExibicao="CPF" nomeApi="cpf" />
+        <CampoTexto nomeExibicao="Email" nomeApi="email" />
+        <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" />
+        <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" />
+        <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" />
+        <CampoTexto nomeExibicao="Matriculado" nomeApi="matriculado" />
       </form>
     </Container>
   );
