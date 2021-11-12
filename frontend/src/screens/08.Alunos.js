@@ -61,6 +61,10 @@ function DetalhesAluno(props) {
   !aluno && buscaAluno();
 
   function apagaAluno() {
+    if (!window.confirm(
+      `Tem certeza que deseja apagar o aluno "${aluno.nome}"?`
+    )) return;  // Aborta função se a pessoa não confirmar
+
     apiAlunos.delete(`/${params.id}/`).then(function () {
       window.location.href = `${window.location.path}/..`;
     });
