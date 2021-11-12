@@ -18,9 +18,9 @@ jobs:
       - name: Autentica no Heroku Container Registry
         run: heroku container:login
       - name: Prepara a imagem Docker do projeto
-        run: docker-compose build
+        run: docker-compose build backend
       - name: Sobe imagem Docker no Heroku Container Registry
-        run: docker-compose push
+        run: docker-compose push backend
       - name: Implanta imagem Docker no servidor
         run: heroku container:release web
       - name: Aplica migrações
