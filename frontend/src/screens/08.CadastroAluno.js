@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Container from "../common/Container";
 
@@ -11,9 +12,21 @@ function ListaAlunos(props) {
   /**
    * Tela de listagem de alunos
    */
+  const [alunos, setAlunos] = useState(null);
+
+  function buscaAlunos() {
+    apiAlunos.get('/').then(function (resposta) {
+      setAlunos(resposta.data);
+    });
+  }
+
+  !alunos && buscaAlunos();
+
   return (
     <Container title="Alunos">
-      listagem de alunos
+      {alunos && alunos.map(function (aluno) {
+        return <Aluno {...aluno} />
+      })}
     </Container>
   );
 }
@@ -23,9 +36,9 @@ function Aluno(props) {
    * Componente para exibir cada aluno em uma lista
    */
   return (
-    <Container>
-      exibe um aluno
-    </Container>
+    <article>
+      <p>{props.nome}</p>
+    </article>
   );
 }
 
