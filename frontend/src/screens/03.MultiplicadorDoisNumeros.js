@@ -14,11 +14,8 @@ export default function MultiplicadorDoisNumerosScreen() {
     <Container>
       <input type="text" placeholder="Digite um número:" onChange={function(e){setNumber1(e.target.value)}} />
       <input type="text" placeholder="Digite outro número:" onChange={function(e){setNumber2(e.target.value)}} />
-      <br></br>
-      <br></br>
       <button onClick={calcula}>Calcular</button>
       <p>Resultado: {resultado}</p>
-
     </Container>
   );
 }
