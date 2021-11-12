@@ -3,7 +3,7 @@ export function CampoTexto(props) {
     <p>
       <label>
         <strong>{props.nomeExibicao}:</strong>
-        <input type="text" name={props.nomeApi} onChange={props.onChange} />
+        <input type="text" name={props.nomeApi} defaultValue={props.valorInicial} onChange={props.onChange} />
       </label>
     </p>
   );

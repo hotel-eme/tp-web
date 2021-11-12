@@ -81,6 +81,7 @@ function DetalhesAluno(props) {
         <dt>Endereço</dt><dd>{aluno.endereco}</dd>
         <dt>Matriculado</dt><dd>{aluno.matriculado ? "Sim" : "Não"}</dd>
       </dl>}
+      <Link to="alteracao">Alterar aluno</Link>
       <button onClick={apagaAluno}>Apagar aluno</button>
     </Container>
   );
@@ -98,7 +99,7 @@ function CadastroAluno(props) {
 
   return (
     <Container title="Cadastro de Aluno">
-      <FormularioAluno aoSubmeter={cadastraAluno} />
+      <FormularioAluno aoSubmeter={cadastraAluno} textoBotao="Cadastrar" />
     </Container>
   );
 }
@@ -107,9 +108,25 @@ function AlteracaoAluno(props) {
   /**
    * Tela para alteração de um aluno existente
    */
+  let params = useParams();
+  const idAluno = params.id;
+  const [aluno, setAluno] = useState(null);
+
+  // Obtém os dados do aluno para pre-popular o formulário
+  !aluno && apiAlunos.get(`/${idAluno}/`).then(function (resposta) {
+    setAluno(resposta.data);
+  });
+
+  function alteraAluno(dadosFormulario) {
+    apiAlunos.put(`/${idAluno}/`, dadosFormulario).then(function () {
+      window.location.href = `${window.location.path}/..`;
+    });
+  }
+
   return (
     <Container title="Alteração de Aluno">
-      alteracao de aluno
+      <Link to="..">Cancelar</Link>
+      <FormularioAluno dadosIniciais={aluno} aoSubmeter={alteraAluno} textoBotao="Alterar" />
     </Container>
   );
 }
@@ -118,12 +135,13 @@ function FormularioAluno(props) {
   /**
    * Formulário para cadastrar ou alterar um aluno
    */
-  const [nome, setNome] = useState(null);
-  const [cpf, setCpf] = useState(null);
-  const [registroAluno, setRegistroAluno] = useState(null);
-  const [dataNascimento, setDataNascimento] = useState(null);
-  const [endereco, setEndereco] = useState(null);
-  const [matriculado, setMatriculado] = useState(false);
+  const dadosIniciais = props.dadosIniciais || {};
+  const [nome, setNome] = useState(dadosIniciais.nome);
+  const [cpf, setCpf] = useState(dadosIniciais.cpf);
+  const [registroAluno, setRegistroAluno] = useState(dadosIniciais.registro_aluno);
+  const [dataNascimento, setDataNascimento] = useState(dadosIniciais.data_nascimento);
+  const [endereco, setEndereco] = useState(dadosIniciais.endereco);
+  const [matriculado, setMatriculado] = useState(dadosIniciais.matriculado);
 
   function submeteFormulario(event) {
     // Inibe comportamento do navegador de enviar o formulário, pois nós
@@ -131,24 +149,24 @@ function FormularioAluno(props) {
     event.preventDefault();
 
     props.aoSubmeter({
-      nome: nome,
-      cpf: cpf,
-      registro_aluno: registroAluno,
-      data_nascimento: dataNascimento,
-      endereco: endereco,
-      matriculado: matriculado,
+      nome: nome || dadosIniciais.nome,
+      cpf: cpf || dadosIniciais.cpf,
+      registro_aluno: registroAluno || dadosIniciais.registro_aluno,
+      data_nascimento: dataNascimento || dadosIniciais.data_nascimento,
+      endereco: endereco || dadosIniciais.endereco,
+      matriculado: matriculado || dadosIniciais.matriculado,
     });
   }
 
   return (
     <form onSubmit={submeteFormulario}>
-      <CampoTexto nomeExibicao="Nome" nomeApi="nome" onChange={function (event) { setNome(event.target.value) }} />
-      <CampoTexto nomeExibicao="CPF" nomeApi="cpf" onChange={function (event) { setCpf(event.target.value) }} />
-      <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" onChange={function (event) { setRegistroAluno(event.target.value) }} />
-      <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" onChange={function (event) { setDataNascimento(event.target.value) }} />
-      <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" onChange={function (event) { setEndereco(event.target.value) }} />
-      <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" onChange={function (event) { setMatriculado(event.target.value) }} />
-      <button type="submit">Cadastrar</button>
+      <CampoTexto nomeExibicao="Nome" nomeApi="nome" valorInicial={dadosIniciais.nome} onChange={function (event) { setNome(event.target.value) }} />
+      <CampoTexto nomeExibicao="CPF" nomeApi="cpf" valorInicial={dadosIniciais.cpf} onChange={function (event) { setCpf(event.target.value) }} />
+      <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" valorInicial={dadosIniciais.registro_aluno} onChange={function (event) { setRegistroAluno(event.target.value) }} />
+      <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" valorInicial={dadosIniciais.data_nascimento} onChange={function (event) { setDataNascimento(event.target.value) }} />
+      <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" valorInicial={dadosIniciais.endereco} onChange={function (event) { setEndereco(event.target.value) }} />
+      <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" valorInicial={dadosIniciais.matriculado} onChange={function (event) { setMatriculado(event.target.value) }} />
+      <button type="submit">{props.textoBotao}</button>
     </form>
   );
 }
@@ -159,7 +177,7 @@ export default function AlunosScreen() {
       <Route path="/" element={<ListaAlunos />} />
       <Route path="/:id" element={<DetalhesAluno />} />
       <Route path="/cadastro" element={<CadastroAluno />} />
-      <Route path="/:id/alteracao" elesment={<AlteracaoAluno />} />
+      <Route path="/:id/alteracao" element={<AlteracaoAluno />} />
     </Routes>
   );
 }
