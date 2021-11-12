@@ -8,7 +8,7 @@ function ListaAlunos(props) {
    * Tela de listagem de alunos
    */
   return (
-    <Container>
+    <Container title="Alunos">
       listagem de alunos
     </Container>
   );
@@ -30,7 +30,7 @@ function DetalhesAluno(props) {
    * Tela para exibir detalhes de um aluno
    */
   return (
-    <Container>
+    <Container title="Detalhes de Aluno">
       detalhe de alunos
     </Container>
   );
@@ -41,7 +41,7 @@ function CadastroAluno(props) {
    * Tela para cadastro de um novo aluno
    */
   return (
-    <Container>
+    <Container title="Cadastro de Aluno">
       cadastro de alunos
     </Container>
   );
@@ -52,7 +52,7 @@ function AlteracaoAluno(props) {
    * Tela para alteração de um aluno existente
    */
   return (
-    <Container>
+    <Container title="Alteração de Aluno">
       alteracao de aluno
     </Container>
   );
