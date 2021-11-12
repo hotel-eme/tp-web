@@ -62,6 +62,7 @@ function DetalhesAluno(props) {
 
   return (
     <Container title="Detalhes de Aluno">
+      <Link to="..">Voltar para lista de alunos</Link>
       {aluno && <dl>
         <dt>Nome</dt><dd>{aluno.nome}</dd>
         <dt>CPF</dt><dd>{aluno.cpf}</dd>
