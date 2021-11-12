@@ -48,6 +48,7 @@ services:
     volumes:
       - ./backend:/app:rw
     environment:
+      DEBUG: 1
       SECRET_KEY: not-a-secret
       DATABASE_URL: postgres://postgres@database:5432/postgres
 
