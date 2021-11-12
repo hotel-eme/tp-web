@@ -60,7 +60,7 @@ function CadastroAluno(props) {
    */
   return (
     <Container title="Cadastro de Aluno">
-      cadastro de alunos
+      <FormularioAluno />
     </Container>
   );
 }
@@ -80,9 +80,28 @@ function FormularioAluno(props) {
   /**
    * Formulário para cadastrar ou alterar um aluno
    */
+  function Campo(props) {
+    return (
+      <p>
+        <label>
+          <strong>{props.nomeExibicao}:</strong>
+          <input type="text" name={props.nomeApi} />
+        </label>
+      </p>
+    );
+  }
+
   return (
     <Container>
-      formulario de AlunosScreen
+      <form>
+        <Campo nomeExibicao="Nome" nomeApi="nome" />
+        <Campo nomeExibicao="CPF" nomeApi="cpf" />
+        <Campo nomeExibicao="Email" nomeApi="email" />
+        <Campo nomeExibicao="RA" nomeApi="registro_aluno" />
+        <Campo nomeExibicao="Data de nascimento" nomeApi="data_nascimento" />
+        <Campo nomeExibicao="Endereço" nomeApi="endereco" />
+        <Campo nomeExibicao="Matriculado" nomeApi="matriculado" />
+      </form>
     </Container>
   );
 }
