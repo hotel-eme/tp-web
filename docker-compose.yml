@@ -49,6 +49,7 @@ services:
       - ./backend:/app:rw
     environment:
       SECRET_KEY: not-a-secret
+      DATABASE_URL: postgres://postgres@database:5432/postgres
 
   # Back-end database
   database:
