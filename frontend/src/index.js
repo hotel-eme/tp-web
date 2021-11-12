@@ -13,9 +13,7 @@ function App() {
       <h1>Trabalhos Práticos de Front-end</h1>
       <nav>
         <Link to="/01-meu-perfil">01. Meu Perfil</Link>
-      </nav>
-      <nav>
-      <Link to="/03-multiplicador-dois-numeros">03. Multiplicador de Dois Números</Link>
+        <Link to="/03-multiplicador-dois-numeros">03. Multiplicador de Dois Números</Link>
       </nav>
     </Container>
   );
