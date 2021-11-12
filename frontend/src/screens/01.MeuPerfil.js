@@ -2,7 +2,7 @@ import Container from '../common/Container';
 
 export default function MeuPerfilScreen() {
   return (
-    <Container>
+    <Container title="Meu Perfil">
       <img
         width="100" height="100"
         alt="Foto de um gatinho."
