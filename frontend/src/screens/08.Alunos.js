@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import Container from "../common/Container";
-import { CampoTexto } from '../common/forms';
+import { CampoCheckbox, CampoTexto } from '../common/forms';
 
 const apiAlunos = axios.create({
   baseURL: 'http://localhost:19800/api/alunos/',
@@ -90,7 +90,7 @@ function FormularioAluno(props) {
         <CampoTexto nomeExibicao="RA" nomeApi="registro_aluno" />
         <CampoTexto nomeExibicao="Data de nascimento" nomeApi="data_nascimento" />
         <CampoTexto nomeExibicao="Endereço" nomeApi="endereco" />
-        <CampoTexto nomeExibicao="Matriculado" nomeApi="matriculado" />
+        <CampoCheckbox nomeExibicao="Matriculado" nomeApi="matriculado" />
       </form>
     </Container>
   );

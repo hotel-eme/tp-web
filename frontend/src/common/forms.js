@@ -3,7 +3,18 @@ export function CampoTexto(props) {
     <p>
       <label>
         <strong>{props.nomeExibicao}:</strong>
-        <input type="text" name={props.nomeApi} />
+        <input type="text" name={props.nomeApi} onChange={props.onChange} />
+      </label>
+    </p>
+  );
+}
+
+export function CampoCheckbox(props) {
+  return (
+    <p>
+      <label>
+        <input type="checkbox" name={props.nomeApi} onChange={props.onChange} />
+        <strong>{props.nomeExibicao}</strong>
       </label>
     </p>
   );
