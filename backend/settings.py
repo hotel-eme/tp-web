@@ -9,7 +9,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.environ.get('DEBUG') == '1'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = '*'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
