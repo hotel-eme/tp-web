@@ -1,0 +1,27 @@
+name: Deploy do back-end
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  deploy-heroku:
+    runs-on: ubuntu-latest
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_APP: ${{ secrets.HEROKU_BACKEND_APP_NAME }}
+      DOCKER_IMAGE: registry.heroku.com/${{ secrets.HEROKU_BACKEND_APP_NAME }}/web
+    steps:
+      - uses: actions/checkout@v2
+      - name: Instala o CLI do Heroku
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+      - name: Autentica no Heroku Container Registry
+        run: heroku container:login
+      - name: Prepara a imagem Docker do projeto
+        run: docker-compose build
+      - name: Sobe imagem Docker no Heroku Container Registry
+        run: docker-compose push
+      - name: Implanta imagem Docker no servidor
+        run: heroku container:release web
+      - name: Aplica migrações
+        run: heroku run python manage.py migrate
