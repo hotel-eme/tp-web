@@ -25,6 +25,7 @@ jobs:
       - name: Envia arquivos para o Heroku
         run: |
           cd $HEROKU_APP
+          echo "{}" > static.json  # Necessário para o buildpack do Heroku
           git config user.email "github@localhost"
           git config user.name "GitHub"
           git add --all
