@@ -9,22 +9,12 @@ const api = axios.create({
 
 export default function TarefasScreen() {
   const [tarefas, setTarefas] = useState(null);
-  const [tarefa, setTarefa] = useState('');
-
-	function onChange(event) {
-		setTarefa(event.target.value);
-	}
 
   function buscarTarefas(tarefas) {
     api.get('/').then(function (resposta) {
       setTarefas(resposta.data);
     });
   }
-
-  function adicionaTarefa() {
-    api.post('/', { descricao: tarefa  }).then(window.location.reload());
-  }
-
   !tarefas && buscarTarefas();
 
   return (
@@ -34,10 +24,8 @@ export default function TarefasScreen() {
            <Tarefa id={tarefa.id} descricao={tarefa.descricao}></Tarefa>
           );
         })}
-      <input value={tarefa} onChange={onChange} />
-      <button onClick={adicionaTarefa}>cadastrar</button>
-
       {tarefas && (tarefas.length)}
+      <NovaTarefa />
     </Container>
   );
 }
@@ -53,5 +41,25 @@ function Tarefa(props) {
       <p>{props.descricao}</p>
       <button onClick={removeTarefa}>Remover Tarefa</button>
     </article>
+  );
+}
+
+function NovaTarefa(props) {
+  /**
+   * Componente para adição de tarefas
+   */
+  const [tarefa, setTarefa] = useState(null);
+
+  function adicionaTarefa() {
+    api.post('/', { descricao: tarefa  }).then(window.location.reload());
+  }
+
+  return (
+    <section>
+      <input value={tarefa} onChange={function (event) {
+        setTarefa(event.target.value);
+      }} />
+      <button onClick={adicionaTarefa}>cadastrar</button>
+    </section>
   );
 }
