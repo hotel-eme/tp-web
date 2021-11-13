@@ -26,7 +26,7 @@ function ListaAlunos(props) {
   return (
     <Container title="Alunos">
       {alunos && alunos.map(function (aluno) {
-        return <Aluno {...aluno} />
+        return <Aluno key={aluno.id} {...aluno} />
       })}
       <Link to="cadastro">Adicionar aluno</Link>
     </Container>
