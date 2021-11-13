@@ -26,7 +26,7 @@ function ListaAlunos(props) {
   return (
     <Container title="Alunos">
       {alunos && alunos.map(function (aluno) {
-        return <Aluno {...aluno} />
+        return <Aluno key={aluno.id} {...aluno} />
       })}
       <Link to="cadastro">Adicionar aluno</Link>
     </Container>
@@ -135,7 +135,7 @@ function FormularioAluno(props) {
   /**
    * Formulário para cadastrar ou alterar um aluno
    */
-  const dadosIniciais = props.dadosIniciais;
+  const dadosIniciais = props.dadosIniciais || {};
   const [nome, setNome] = useState(dadosIniciais.nome);
   const [cpf, setCpf] = useState(dadosIniciais.cpf);
   const [registroAluno, setRegistroAluno] = useState(dadosIniciais.registro_aluno);
