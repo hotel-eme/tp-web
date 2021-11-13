@@ -26,7 +26,7 @@ jobs:
       - name: Configura buildpack do Heroku
         run: |
           cd $HEROKU_APP
-          echo '{"root": "."}' > static.json
+          echo '{"root": ".", "routes": {"/*": "index.html"}}' > static.json
           # heroku buildpacks:set heroku-community/static
       - name: Envia arquivos para o Heroku
         run: |
