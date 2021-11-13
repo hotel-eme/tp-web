@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      HEROKU_APP: ${{ secrets.HEROKU_FRONTEND_APP_NAME }}
+      HEROKU_APP: emyller-tp-frontend
     steps:
       - uses: actions/checkout@v2
       - name: Instala o CLI do Heroku
