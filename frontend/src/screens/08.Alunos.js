@@ -135,7 +135,7 @@ function FormularioAluno(props) {
   /**
    * Formulário para cadastrar ou alterar um aluno
    */
-  const dadosIniciais = props.dadosIniciais;
+  const dadosIniciais = props.dadosIniciais || {};
   const [nome, setNome] = useState(dadosIniciais.nome);
   const [cpf, setCpf] = useState(dadosIniciais.cpf);
   const [registroAluno, setRegistroAluno] = useState(dadosIniciais.registro_aluno);
