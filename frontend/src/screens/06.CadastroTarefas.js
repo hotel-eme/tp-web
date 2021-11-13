@@ -10,7 +10,7 @@ const api = axios.create({
 export default function TarefasScreen() {
   const [tarefas, setTarefas] = useState(null);
 
-  function buscarTarefas(tarefas) {
+  function buscarTarefas() {
     api.get('/').then(function (resposta) {
       setTarefas(resposta.data);
     });
@@ -21,7 +21,7 @@ export default function TarefasScreen() {
     <Container title="Tarefas">
       {tarefas && tarefas.map(function (tarefa) {
         return (
-          <Tarefa id={tarefa.id} descricao={tarefa.descricao}></Tarefa>
+          <Tarefa {...tarefa}></Tarefa>
         );
       })}
       {tarefas && (tarefas.length)}
