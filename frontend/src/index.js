@@ -6,6 +6,7 @@ import './css/index.css';
 import MeuPerfilScreen from './screens/01.MeuPerfil';
 import ContadorPessoasScreen from './screens/02.ContadorPessoas';
 import MultiplicadorDoisNumerosScreen from './screens/03.MultiplicadorDoisNumeros.js';
+import AlunosScreen from './screens/08.Alunos';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Link to="/01-meu-perfil">01. Meu Perfil</Link>
         <Link to="/02-contador-pessoas">02. Contador De Pessoas</Link>
         <Link to="/03-multiplicador-dois-numeros">03. Multiplicador de Dois Números</Link>
+        <Link to="/08-alunos">08. Alunos</Link>
       </nav>
     </Container>
   );
@@ -27,6 +29,7 @@ ReactDOM.render(
       <Route path="/01-meu-perfil" element={<MeuPerfilScreen />} />
       <Route path="/02-contador-pessoas" element={<ContadorPessoasScreen />} />
       <Route path="/03-multiplicador-dois-numeros" element={<MultiplicadorDoisNumerosScreen />} />
+      <Route path="/08-alunos/*" element={<AlunosScreen />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
