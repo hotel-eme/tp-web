@@ -10,6 +10,7 @@ jobs:
     env:
       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       HEROKU_APP: emyller-tp-frontend
+      REACT_APP_API_HOST: https://emyller-tp-backend.herokuapp.com/
     steps:
       - uses: actions/checkout@v2
       - name: Instala o CLI do Heroku
