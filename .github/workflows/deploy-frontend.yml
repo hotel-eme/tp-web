@@ -19,12 +19,14 @@ jobs:
       - name: Compila arquivos estáticos da aplicação
         run: docker-compose run --no-deps --rm frontend node_modules/.bin/react-scripts build
       - name: Clona o repositório Git do Heroku
-        run: heroku git:clone
+        run: git clone -o heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/${HEROKU_APP}.git
       - name: Copia arquivos compilados para o diretório do Heroku
         run: cp -r frontend/build/* $HEROKU_APP/
       - name: Envia arquivos para o Heroku
         run: |
           cd $HEROKU_APP
+          git config user.email "github@localhost"
+          git config user.name "GitHub"
           git add --all
           git commit -m "Atualiza com commit $GITHUB_SHA"
           git push heroku master
