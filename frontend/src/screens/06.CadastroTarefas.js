@@ -19,11 +19,11 @@ export default function TarefasScreen() {
 
   return (
     <Container title="Tarefas">
-        {tarefas && tarefas.map(function (tarefa) {
-          return (
-           <Tarefa id={tarefa.id} descricao={tarefa.descricao}></Tarefa>
-          );
-        })}
+      {tarefas && tarefas.map(function (tarefa) {
+        return (
+          <Tarefa id={tarefa.id} descricao={tarefa.descricao}></Tarefa>
+        );
+      })}
       {tarefas && (tarefas.length)}
       <NovaTarefa />
     </Container>
