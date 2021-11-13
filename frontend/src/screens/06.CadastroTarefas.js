@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Container from '../common/Container';
 
 const api = axios.create({
@@ -9,11 +9,20 @@ const api = axios.create({
 
 export default function TarefasScreen() {
   const [tarefas, setTarefas] = useState(null);
+  const [tarefa, setTarefa] = useState('');
+
+	function onChange(event) {
+		setTarefa(event.target.value);
+	}
 
   function buscacarTarefas(tarefas) {
     api.get('/').then(function (resposta) {
       setTarefas(resposta.data);
     });
+  }
+
+  function adicionaTarefa() {
+    api.post('/', { descricao: tarefa  }).then(window.location.reload());
   }
 
   !tarefas && buscacarTarefas();
@@ -25,12 +34,16 @@ export default function TarefasScreen() {
            <Tarefa id={tarefa.id} descricao={tarefa.descricao}></Tarefa>
           );
         })}
-        {tarefas && (tarefas.length)}
+      <input value={tarefa} onChange={onChange} />
+      <button onClick={adicionaTarefa}>cadastrar</button>
+
+      {tarefas && (tarefas.length)}
     </Container>
   );
 }
 
 function Tarefa(props) {
+
   function removeTarefa() {
     api.delete(`/${props.id}/`).then(window.location.reload());
   }
@@ -39,6 +52,7 @@ function Tarefa(props) {
     <article>
       <p>{props.descricao}</p>
       <button onClick={removeTarefa}>Remover Tarefa</button>
+      <p>{props.descricao}</p>
     </article>
   );
 }
