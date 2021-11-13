@@ -52,7 +52,6 @@ function Tarefa(props) {
     <article>
       <p>{props.descricao}</p>
       <button onClick={removeTarefa}>Remover Tarefa</button>
-      <p>{props.descricao}</p>
     </article>
   );
 }
