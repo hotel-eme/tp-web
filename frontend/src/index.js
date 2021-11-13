@@ -5,7 +5,7 @@ import Container from './common/Container';
 import './css/index.css';
 import MeuPerfilScreen from './screens/01.MeuPerfil';
 import ContadorPessoasScreen from './screens/02.ContadorPessoas';
-import TarefasScreen from './screens/06.CadastroTarefas';
+import TarefasScreen from './screens/06.Tarefas';
 import MultiplicadorDoisNumerosScreen from './screens/03.MultiplicadorDoisNumeros.js';
 import AlunosScreen from './screens/08.Alunos';
 
