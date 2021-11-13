@@ -2,12 +2,8 @@ FROM node:16
 
 # Configura acesso ao usuário da imagem Docker
 WORKDIR /app
-RUN chown node:node /app
-USER node
 
 # Instala dependências do projeto
 COPY package.json .
-RUN npm install
-
-# Restaura usuário da imagem
-USER root
+RUN npm config set unsafe-perm true
+RUN npm install --force

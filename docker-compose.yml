@@ -20,7 +20,7 @@ services:
   frontend:
     build:
       context: ./frontend
-    command: npm start
+    command: node_modules/.bin/react-scripts start
     ports:
       - 19300:3000
     depends_on:
