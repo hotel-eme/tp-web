@@ -15,7 +15,7 @@ export default function TarefasScreen() {
 		setTarefa(event.target.value);
 	}
 
-  function buscacarTarefas(tarefas) {
+  function buscarTarefas(tarefas) {
     api.get('/').then(function (resposta) {
       setTarefas(resposta.data);
     });
@@ -25,7 +25,7 @@ export default function TarefasScreen() {
     api.post('/', { descricao: tarefa  }).then(window.location.reload());
   }
 
-  !tarefas && buscacarTarefas();
+  !tarefas && buscarTarefas();
 
   return (
     <Container title="Tarefas">
