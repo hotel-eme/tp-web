@@ -17,7 +17,7 @@ jobs:
       - name: Prepara a imagem Docker do projeto
         run: docker-compose build frontend
       - name: Compila arquivos estáticos da aplicação
-        run: docker-compose run --rm frontend npm run build
+        run: docker-compose run --no-deps --rm frontend npm run build
       - name: Clona o repositório Git do Heroku
         run: heroku git:clone
       - name: Copia arquivos compilados para o diretório do Heroku
