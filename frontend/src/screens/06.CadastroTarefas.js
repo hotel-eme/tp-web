@@ -33,7 +33,9 @@ export default function TarefasScreen() {
 function Tarefa(props) {
 
   function removeTarefa() {
-    api.delete(`/${props.id}/`).then(window.location.reload());
+    api.delete(`/${props.id}/`).then(function () {
+      window.location.reload();
+    });
   }
 
   return (
@@ -51,7 +53,9 @@ function NovaTarefa(props) {
   const [tarefa, setTarefa] = useState(null);
 
   function adicionaTarefa() {
-    api.post('/', { descricao: tarefa  }).then(window.location.reload());
+    api.post('/', { descricao: tarefa }).then(function () {
+      window.location.reload();
+    });
   }
 
   return (
