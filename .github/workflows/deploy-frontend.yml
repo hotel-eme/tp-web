@@ -23,10 +23,10 @@ jobs:
       - name: Clona o repositório Git do Heroku
         run: heroku git:clone
       - name: Copia arquivos compilados para o diretório do Heroku
-        run: cp frontend/build/* $HEROKU_FRONTEND_APP_NAME/
+        run: cp -r frontend/build/* $HEROKU_APP/
       - name: Envia arquivos para o Heroku
         run: |
-          cd $HEROKU_FRONTEND_APP_NAME
+          cd $HEROKU_APP
           git add --all
           git commit -m "Atualiza com commit $GITHUB_SHA"
           git push heroku master
