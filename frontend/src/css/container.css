@@ -1,3 +1,9 @@
 main#container {
   width: 600px;
 }
+
+p#back {
+  background: #ddd;
+  margin: 0;
+  padding: 1em;
+}
