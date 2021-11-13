@@ -24,7 +24,10 @@ export default function TarefasScreen() {
           <Tarefa {...tarefa}></Tarefa>
         );
       })}
-      {tarefas && (tarefas.length)}
+      {tarefas && (tarefas.length
+          ? <p>{tarefas.length} tarefas.</p>
+          : <p>Nenhuma tarefa, oba!</p>
+        )}
       <NovaTarefa />
     </Container>
   );
