@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Container from '../common/Container';
 
 const api = axios.create({
-  baseURL: 'http://localhost:19800/api/tarefas/',
+  baseURL: (new URL('/api/tarefas/', process.env.REACT_APP_API_HOST)).href,
   headers: { 'Accept': 'application/json' },
 });
 

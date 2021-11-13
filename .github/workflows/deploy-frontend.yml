@@ -1,0 +1,38 @@
+name: Deploy do front-end
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy-heroku:
+    runs-on: ubuntu-latest
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_APP: emyller-tp-frontend
+      REACT_APP_API_HOST: https://emyller-tp-backend.herokuapp.com/
+    steps:
+      - uses: actions/checkout@v2
+      - name: Instala o CLI do Heroku
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+      - name: Prepara a imagem Docker do projeto
+        run: docker-compose build frontend
+      - name: Compila arquivos estáticos da aplicação
+        run: docker-compose run --no-deps --rm frontend node_modules/.bin/react-scripts build
+      - name: Clona o repositório Git do Heroku
+        run: git clone -o heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/${HEROKU_APP}.git
+      - name: Copia arquivos compilados para o diretório do Heroku
+        run: cp -r frontend/build/* $HEROKU_APP/
+      - name: Configura buildpack do Heroku
+        run: |
+          cd $HEROKU_APP
+          echo '{"root": ".", "routes": {"/*": "index.html"}}' > static.json
+          # heroku buildpacks:set heroku-community/static
+      - name: Envia arquivos para o Heroku
+        run: |
+          cd $HEROKU_APP
+          git config user.email "github@localhost"
+          git config user.name "GitHub"
+          git add --all
+          git commit -m "Atualiza com commit $GITHUB_SHA"
+          git push heroku master

@@ -13,6 +13,7 @@ do desenvolvimento do projeto.
 A aplicação se encontra online nos seguintes endereços:
 
 - back-end: https://emyller-tp-backend.herokuapp.com/api/
+- front-end: https://emyller-tp-frontend.herokuapp.com/
 
 A atualização desses ambiente (_deploy_) é feita de forma automática, através do
 GitHub Actions, onde implantamos um sistema de _continuous delivery_. A solução

@@ -13,12 +13,14 @@ function App() {
   return (
     <Container>
       <h1>Trabalhos Práticos de Front-end</h1>
-      <nav>
-        <Link to="/01-meu-perfil">01. Meu Perfil</Link>
-        <Link to="/02-contador-pessoas">02. Contador De Pessoas</Link>
-        <Link to="/06-cadastro-tarefas">06. Cadastro de Tarefas</Link>
-        <Link to="/03-multiplicador-dois-numeros">03. Multiplicador de Dois Números</Link>
-        <Link to="/08-alunos">08. Alunos</Link>
+      <nav id="menu">
+        <ul>
+          <li><Link to="/01-meu-perfil">01. Meu Perfil</Link></li>
+          <li><Link to="/02-contador-pessoas">02. Contador De Pessoas</Link></li>
+          <li><Link to="/03-multiplicador-dois-numeros">03. Multiplicador de Dois Números</Link></li>
+          <li><Link to="/06-cadastro-tarefas">06. Cadastro de Tarefas</Link></li>
+          <li><Link to="/08-alunos">08. Alunos</Link></li>
+        </ul>
       </nav>
     </Container>
   );
