@@ -8,3 +8,6 @@ USER node
 # Instala dependências do projeto
 COPY package.json .
 RUN npm install
+
+# Restaura usuário da imagem
+USER root
