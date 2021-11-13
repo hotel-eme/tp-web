@@ -5,7 +5,7 @@ import Container from "../common/Container";
 import { CampoCheckbox, CampoTexto } from '../common/forms';
 
 const apiAlunos = axios.create({
-  baseURL: 'http://localhost:19800/api/alunos/',
+  baseURL: (new URL('/api/alunos/', process.env.REACT_APP_API_HOST)).href,
   headers: { 'Accept': 'application/json' },
 });
 
