@@ -10,6 +10,14 @@ Desenvolvimento de Sistemas da UNIP:
 Siga as nossas [instruções de contribuição](./CONTRIBUTING.md) para participar
 do desenvolvimento do projeto.
 
+A aplicação se encontra online nos seguintes endereços:
+
+- back-end: https://emyller-tp-backend.herokuapp.com/api/
+
+A atualização desses ambiente (_deploy_) é feita de forma automática, através do
+GitHub Actions, onde implantamos um sistema de _continuous delivery_. A solução
+de infraestrutura utilizada foi o Heroku.
+
 
 ## Ferramentas e tecnologias
 
