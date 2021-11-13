@@ -1,0 +1,30 @@
+name: Deploy do front-end
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  deploy-heroku:
+    runs-on: ubuntu-latest
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_APP: ${{ secrets.HEROKU_FRONTEND_APP_NAME }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Instala o CLI do Heroku
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+      - name: Prepara a imagem Docker do projeto
+        run: docker-compose build frontend
+      - name: Compila arquivos estáticos da aplicação
+        run: docker-compose run --rm frontend npm run build
+      - name: Clona o repositório Git do Heroku
+        run: heroku git:clone
+      - name: Copia arquivos compilados para o diretório do Heroku
+        run: cp frontend/build/* $HEROKU_FRONTEND_APP_NAME/
+      - name: Envia arquivos para o Heroku
+        run: |
+          cd $HEROKU_FRONTEND_APP_NAME
+          git add --all
+          git commit -m "Atualiza com commit $GITHUB_SHA"
+          git push heroku master
