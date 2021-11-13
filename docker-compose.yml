@@ -16,7 +16,7 @@ services:
     environment:
       NODE_ENV: development
 
-  # React Native (Expo) application
+  # React application
   frontend:
     build:
       context: ./frontend
