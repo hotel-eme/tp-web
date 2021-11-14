@@ -20,6 +20,15 @@ GitHub Actions, onde implantamos um sistema de _continuous delivery_. A soluçã
 de infraestrutura utilizada foi o Heroku.
 
 
+## Screenshots
+
+Confira capturas de tela de cada parte do projeto:
+
+- Back-end
+- Front-end web
+- Front-end mobile
+
+
 ## Ferramentas e tecnologias
 
 O projeto é feito com:
