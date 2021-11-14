@@ -11,3 +11,5 @@ Framework no ambiente local.
   ![API de Alunos](./api-alunos.png)
 - API de Lista de Compras:
   ![API de Lista de Compras](./api-lista-compras.png)
+- API de Clientes:
+  ![API de Clientes](./api-clientes.png)
