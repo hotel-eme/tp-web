@@ -25,7 +25,7 @@ de infraestrutura utilizada foi o Heroku.
 Confira capturas de tela de cada parte do projeto:
 
 - [Back-end](./backend/screenshots/_galeria.md)
-- Front-end web
+- [Front-end web](./frontend/screenshots/_galeria.md)
 - [Front-end mobile](./mobile/screenshots/_galeria.md)
 
 
