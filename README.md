@@ -26,7 +26,7 @@ Confira capturas de tela de cada parte do projeto:
 
 - [Back-end](./backend/screenshots/_galeria.md)
 - Front-end web
-- Front-end mobile
+- [Front-end mobile](./mobile/screenshots/_galeria.md)
 
 
 ## Ferramentas e tecnologias
